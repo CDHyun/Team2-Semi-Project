@@ -1,6 +1,5 @@
 package com.javalec.shop.dto;
 
-import java.io.FileInputStream;
 import java.sql.Timestamp;
 
 public class ProductDto {
@@ -12,9 +11,7 @@ public class ProductDto {
 	Timestamp pInsertDate;
 	Timestamp pUpdateDate;
 	Timestamp pDeleteDate;
-	String pImageName = "";
-	
-	FileInputStream pimage;
+	String pImage;
 	
 	
 	
@@ -29,30 +26,26 @@ public class ProductDto {
 
 
 
+
 	
 	
+	
 
 
-
-	public ProductDto(String pImageName, String pName, String pBrandName, int pPrice) {
+	public ProductDto(String pName, String pBrandName, int pPrice, String pImage) {
 		super();
-		this.pImageName = pImageName;
 		this.pName = pName;
 		this.pBrandName = pBrandName;
 		this.pPrice = pPrice;
+		this.pImage = pImage;
 	}
-	public ProductDto( String pName, String pBrandName, int pPrice) {
-		super();
-		
-		this.pName = pName;
-		this.pBrandName = pBrandName;
-		this.pPrice = pPrice;
-	}
-
-
-
-
 	
+
+
+
+
+
+
 
 
 
@@ -197,8 +190,8 @@ public class ProductDto {
 
 
 
-	public String getpImageName() {
-		return pImageName;
+	public String getpImage() {
+		return pImage;
 	}
 
 
@@ -207,29 +200,29 @@ public class ProductDto {
 
 
 
-	public void setpImageName(String pImageName) {
-		this.pImageName = pImageName;
+	public void setpImage(String pImage) {
+		this.pImage = pImage;
 	}
 
 
 
 
+	
+	
 
-
-
-	public FileInputStream getPimage() {
-		return pimage;
-	}
-
-
-
-
-
-
-
-	public void setPimage(FileInputStream pimage) {
-		this.pimage = pimage;
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 

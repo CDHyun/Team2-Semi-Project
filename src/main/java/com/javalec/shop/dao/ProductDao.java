@@ -1,9 +1,5 @@
 package com.javalec.shop.dao;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,21 +14,7 @@ import com.javalec.shop.dto.ProductDto;
 public class ProductDao {
 	DataSource dataSource;
 	
-	String pImageName="";
 
-	
-	// File
-	FileInputStream pImage;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -101,7 +83,7 @@ public class ProductDao {
 		
 		try {
 			connection = dataSource.getConnection();
-			String WhereDefault = "select  pName, pBrandName, pPrice , pImageName, pImage from product";
+			String WhereDefault = "select  pName, pBrandName, pPrice,pImage  from product";
 			//String WhereDefault2 = " where " + queryName + " like '%" +queryContent + "%'";
 			preparedStatement = connection.prepareStatement(WhereDefault);
 			resultSet = preparedStatement.executeQuery();
@@ -110,29 +92,15 @@ public class ProductDao {
 				String pName = resultSet.getString(1);
 				String pBrandName = resultSet.getString(2);
 				int pPrice = resultSet.getInt(3);
-				String pImageName = resultSet.getString(4);
-				
-				File file = new File("./" + pImageName);
-				FileOutputStream output = new FileOutputStream(file);     //outputstream 은 select
-				
-				InputStream input = resultSet.getBinaryStream(5);
-				
-				
-				byte[] buffer = new byte[1024];
-				while(input.read(buffer) > 0) {
-					output.write(buffer);
-				}
-				
+				String pImage = resultSet.getString(4);
 			
 				
-				
-				
 			
-				ProductDto dto = new ProductDto(pImageName, pName, pBrandName, pPrice);
+				ProductDto dto = new ProductDto(pName, pBrandName, pPrice, pImage);
 				dtos.add(dto);
 
-				output.close();
 			}
+			
 		}catch(Exception e) {
 
 			e.printStackTrace();
@@ -157,4 +125,15 @@ public class ProductDao {
 	
 	
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
