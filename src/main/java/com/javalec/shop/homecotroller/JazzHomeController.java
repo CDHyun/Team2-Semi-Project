@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.storeconfig.JarScannerSF;
+
 import com.javalec.shop.command.JazzCommand;
+import com.javalec.shop.command.JazzIndexCommand;
 import com.javalec.shop.command.JazzRegisterCommand;
 
 
@@ -59,6 +62,12 @@ public class JazzHomeController extends HttpServlet {
 			command = new JazzRegisterCommand();
 			command.execute(request, response);
 			viewPage = "login_form.jsp";
+			break;
+			
+		case("/index.do"):
+			command = new JazzIndexCommand();
+			command.execute(request, response);
+			viewPage = "index.jsp";
 			break;
 		}
 		
