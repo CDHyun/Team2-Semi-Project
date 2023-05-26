@@ -8,24 +8,44 @@
 <title>Index Page</title>
 </head>
 <body>
-<table border="1" style="border:1px solid black;margin-left:auto;margin-right:auto;">
-		<tr>
-			<th>pImage</th>
-			<th>pBrandName</th>
-			<th>pName</th>
-			<th>pPrice</th>
-		</tr><!-- Dao에서 준list -->
-		<c:forEach items="${list }" var="dto">
-			<tr>
-				<td><img alt="image" src="${dto.pImage }" width="100" height="100"></td>
-				<td>${dto.pBrandName }</td>
-				<td>${dto.pName }</td>
-				<td>${dto.pPrice }</td>
-			</tr>
-		</c:forEach>		
-	
-	
-	</table>
 
+
+<form action="product_details.jsp" method="post">
+
+<table border="" style="border: 1px solid black; margin-left: auto; margin-right: auto;">
+  <caption>이미지 클릭 시 상세페이지로 이동합니다.</caption>
+    <tr>
+        <th>pImage</th>
+        <c:forEach items="${list}" var="dto">
+            <td>
+                <a href="product_details.jsp">
+                    <img alt="image" src="${dto.pImage}" width="100" height="100"><br/>
+                    
+                </a>
+            </td>
+        </c:forEach>
+    </tr>
+    <tr>
+        <th>pBrandName</th>
+        <c:forEach items="${list}" var="dto">
+            <td>${dto.pBrandName}</td>
+        </c:forEach>
+    </tr>
+    <tr>
+        <th>pName</th>
+        <c:forEach items="${list}" var="dto">
+            <td>${dto.pName}</td>
+        </c:forEach>
+    </tr>
+    <tr>
+        <th>pPrice</th>
+        <c:forEach items="${list}" var="dto">
+            <td>${dto.pPrice}</td>
+        </c:forEach>
+    </tr>
+</table>
+
+<input type="hidden" name="pCode" value="${content_view.pCode}">
+</form>
 </body>
 </html>

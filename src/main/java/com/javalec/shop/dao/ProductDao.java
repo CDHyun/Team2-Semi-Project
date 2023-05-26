@@ -128,7 +128,49 @@ public class ProductDao {
 	
 	
 	
-	
+	public ProductDto showDetail(String code) {
+		ProductDto dto = null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			String query = "select pImage, pCode, pBrandName, pName, pPrice from product";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, Integer.parseInt(code));
+			resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				String pImage = resultSet.getString(1);
+				int pCode = Integer.parseInt(resultSet.getString(2));
+				String pBrandName = resultSet.getString(3);
+				String pName = resultSet.getString(4);
+				int pPrice = Integer.parseInt(resultSet.getString(5));
+				
+				dto = new ProductDto(pImage, pCode, pBrandName, pName, pPrice);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(resultSet != null){ // 무언가 들어가 있으면close
+					resultSet.close();
+				}
+				if(preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if(connection != null) {
+					connection.close();
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return dto;
+		
+	}// contentView
 	
 	
 	
