@@ -1,6 +1,8 @@
 package com.javalec.shop.homecotroller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javalec.shop.command.JazzCommand;
+import com.javalec.shop.command.JazzRegisterCommand;
 
 
 /**
@@ -52,11 +55,15 @@ public class JazzHomeController extends HttpServlet {
 		String com = uri.substring(conPath.length());
 		
 		switch(com) {
-		case("register.do"):
+		case("/register.do"):
+			command = new JazzRegisterCommand();
+			command.execute(request, response);
+			viewPage = "login_form.jsp";
 			break;
 		}
 		
-		
-	}
+		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+		dispatcher.forward(request, response);
+	}	// End actionDo
 	
 }	// End Class
