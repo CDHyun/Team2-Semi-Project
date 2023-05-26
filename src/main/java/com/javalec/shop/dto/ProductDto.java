@@ -32,6 +32,24 @@ public class ProductDto {
 	
 
 
+	public ProductDto(String pImage, int pCode, String pBrandName, String pName,int pPrice) {
+		super();
+		this.pCode = pCode;
+		this.pName = pName;
+		this.pBrandName = pBrandName;
+		this.pPrice = pPrice;
+		this.pImage = pImage;
+	}
+
+
+
+
+
+
+
+
+
+
 	public ProductDto(String pName, String pBrandName, int pPrice, String pImage) {
 		super();
 		this.pName = pName;
