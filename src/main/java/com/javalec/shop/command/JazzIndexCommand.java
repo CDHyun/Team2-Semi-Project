@@ -1,5 +1,7 @@
 package com.javalec.shop.command;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,7 +18,7 @@ public class JazzIndexCommand implements JazzCommand {
 		
 		
 		ProductDao dao = new ProductDao();  // BDao의 생성자로가서 dB연결해주기
-		java.util.ArrayList<ProductDto> dtos = dao.searchAction();
+		ArrayList<ProductDto> dtos = dao.searchAction();
 		request.setAttribute("list", dtos);   // jsp로 가져온 dtos데이터를 가져다주기 위함
 	}
 
