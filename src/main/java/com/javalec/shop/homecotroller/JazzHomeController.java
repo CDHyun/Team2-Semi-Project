@@ -13,6 +13,7 @@ import org.apache.catalina.storeconfig.JarScannerSF;
 
 import com.javalec.shop.command.JazzCommand;
 import com.javalec.shop.command.JazzIndexCommand;
+import com.javalec.shop.command.JazzProductCommand;
 import com.javalec.shop.command.JazzRegisterCommand;
 
 
@@ -61,14 +62,20 @@ public class JazzHomeController extends HttpServlet {
 		case("/register.do"):
 			command = new JazzRegisterCommand();
 			command.execute(request, response);
-			viewPage = "login_form.jsp";
+			String view = request.getParameter("view");
+			viewPage = view;
 			break;
-			
 		case("/index.do"):
 			command = new JazzIndexCommand();
 			command.execute(request, response);
 			viewPage = "index.jsp";
 			break;
+		case("/product_details.do"):
+	         command = new JazzProductCommand();
+	         command.execute(request, response);
+	         viewPage = "product_details.jsp";
+	         break;
+	      
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

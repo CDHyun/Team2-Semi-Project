@@ -42,14 +42,23 @@
 	    const regExpuid = /^[a-z|A-Z|0-9]*$/;
 	    const regExpuPass = /^[a-z|A-Z|0-9]*$/;
 	    const regExpuName = /^[a-z|A-Z|가-힣]*$/;
-	    const regExpuPhone = /^\d{3}-\d{3,4}-\d{4}$/
-		const regExpuEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
-	    const regExpuAddress = /^[가-힣|0-9|a-z|A-Z|-|\s]*$/
-	
+	    const regExpuPhone = /^\d{3}-\d{3,4}-\d{4}$/;
+		const regExpuEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+	    const regExpuAddress = /^[가-힣|0-9|a-z|A-Z|-|\s]*$/;
+	    
+	    const regExpAdmin = /^(admin|root|insert|update|delete|select)$/
+
+	    if (regExpAdmin.test(uid.toLowerCase())) {
+	        showAlert("Java Fundmental 규약에 어긋나는 아이디는 사용 불가능합니다.");
+	        form.uid.select();
+	        return;
+	    }
+	    
 	    if (uid.trim().length === 0) {
 	        showAlert("아이디를 입력해주세요.");
 	        return;
 	    }
+		
 		if(!regExpuid.test(uid)){
 			showAlert("아이디는 영문&숫자만 사용 가능합니다.")
 			form.uid.select();
@@ -120,9 +129,15 @@
 			form.uAddress.select();
 			return
 		}
+		
+	    var checkDuplicateId = '<%=request.getParameter("result")%>';
+	    if (!checkDuplicateId) {
+	        showAlert("중복 되는 아이디입니다.");
+	        form.uid.select();
+	        return;
+	    }
 
-		
-		
+	    form.submit();
 		
 	}	// End function
 </script>

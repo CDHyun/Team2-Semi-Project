@@ -59,7 +59,7 @@ public class UserDao {
 			/* Slack Test */
 			
 		}catch (Exception e) {
-			System.err.println("로그인 메소드에서 문제 발생");
+			e.printStackTrace();
 		}
 		return result;
 	}
