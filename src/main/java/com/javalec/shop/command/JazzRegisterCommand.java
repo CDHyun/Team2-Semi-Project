@@ -19,6 +19,8 @@ public class JazzRegisterCommand implements JazzCommand {
 		
 		UserDao userDao = new UserDao();
 		userDao.signUp(uid, uPassword, uName, uPhone, uAddress, uEmail);
+		
+		
 	}
 		
 	
