@@ -56,6 +56,7 @@ public class UserDao {
 			if(count>0) {
 				result = true;
 			}
+			/* Slack Test */
 			
 		}catch (Exception e) {
 			System.err.println("로그인 메소드에서 문제 발생");
