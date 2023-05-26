@@ -157,12 +157,14 @@ a {
 				<div class="form-group">
 					<input type="password" name="uPassword" placeholder="비밀번호">
 				</div>
-				<input type="button" class="button" value="로그인"
-					onclick="loginCheck()"><br /> 아직 회원이 아니세요? <a
-					href="sign_up.jsp">회원가입</a>
+				<input type="button" class="button" value="로그인" onclick="loginCheck()"><br />
+				아직 회원이 아니세요? <a href="sign_up.jsp">회원가입</a>
 			</form>
 		</div>
 	</div>
+	
+	
+	
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

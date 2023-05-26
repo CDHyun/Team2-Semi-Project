@@ -14,7 +14,7 @@
 		alertBox.className = 'alert-box';
 		alertBox.innerText = message;
 
-		const container = document.querySelector('.background');
+		const container = document.querySelector('.container'); // 수정: .background -> .container
 		container.appendChild(alertBox);
 
 		// 화면 중앙에 알림 창을 위치시키기 위해 CSS를 조작
@@ -30,24 +30,103 @@
 	}
 
 	function registerCheck() {
-		const form = document.register
-		const uid = form.uid.value.trim()
-		const uPassword = form.uPassword.value.trim()
-		const uRePass = form.uRePass.value.trim()
-		const uName = form.uName.value.trim()
-		const uPhone = form.uPhone.value.trim()
-		const uEmail = form.uEmail.value.trim()
-		const uAddress = form.uAddress.value.trim()
-
-		if(uid.length === 0){
-			showAlert("아이디를 입력해주세요.")
-			return;
+	    const form = document.register;
+	    const uid = form.uid.value
+	    const uPassword = form.uPassword.value
+	    const uRePass = form.uRePass.value
+	    const uName = form.uName.value
+	    const uPhone = form.uPhone.value
+	    const uEmail = form.uEmail.value
+	    const uAddress = form.uAddress.value
+	    
+	    const regExpuid = /^[a-z|A-Z|0-9]*$/;
+	    const regExpuPass = /^[a-z|A-Z|0-9]*$/;
+	    const regExpuName = /^[a-z|A-Z|가-힣]*$/;
+	    const regExpuPhone = /^\d{3}-\d{3,4}-\d{4}$/
+		const regExpuEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
+	    const regExpuAddress = /^[가-힣|0-9|a-z|A-Z|-|\s]*$/
+	
+	    if (uid.trim().length === 0) {
+	        showAlert("아이디를 입력해주세요.");
+	        return;
+	    }
+		if(!regExpuid.test(uid)){
+			showAlert("아이디는 영문&숫자만 사용 가능합니다.")
+			form.uid.select();
+			return
 		}
 		
+	    if (uPassword.trim().length === 0) {
+	        showAlert("비밀번호를 입력해주세요.");
+	        return;
+	    }
+		if(!regExpuPass.test(uPassword)){
+			showAlert("비밀번호는 영문&숫자만 사용 가능합니다.")
+			form.uPassword.select();
+			return
+		}
+		
+	    if (uRePass.trim().length === 0) {
+	        showAlert("비밀번호 확인을 입력해주세요.");
+	        return;
+	    }
+		if(!regExpuPass.test(uRePass)){
+			showAlert("비밀번호는 영문&숫자만 사용 가능합니다.")
+			form.uRePass.select();
+			return
+		}
+		if(uPassword.trim() !== uRePass.trim()){
+	        showAlert("비밀번호가 일치하지 않습니다.");
+			form.uRePass.select();
+			return
+		}
+		
+	    if (uName.trim().length === 0) {
+	        showAlert("이름을 입력해주세요.");
+	        return;
+	    }
+		if(!regExpuName.test(uName)){
+			showAlert("이름은 한글과 영문만 입력 할 수 있습니다.")
+			form.uName.select();
+			return
+		}
+		
+	    if (uPhone.trim().length === 0) {
+	        showAlert("전화번호를 입력해주세요.");
+	        return;
+	    }
+		if(!regExpuPhone.test(uPhone)){
+			showAlert("전화번호를 확인해주세요.\n ex)010-1234-5678")
+			form.uPhone.select();
+			return
+		}
+		
+	    if (uEmail.trim().length === 0) {
+	        showAlert("이메일을 입력해주세요.");
+	        return;
+	    }
+		if(!regExpuEmail.test(uEmail)){
+			showAlert("이메일 형식을 확인해주세요. \n ex) id@domain.com")
+			form.uEmail.select();
+			return
+		}
+		
+	    if (uAddress.trim().length === 0) {
+	        showAlert("주소를 입력해주세요.");
+	        return;
+	    }
+		if(!regExpuAddress.test(uAddress)){
+			showAlert("주소는 영문/한글/숫자/- 만 입력 가능합니다.")
+			form.uAddress.select();
+			return
+		}
 
-		form.submit();
-	}
+		
+		
+		
+	}	// End function
 </script>
+
 
 <style>
 body {

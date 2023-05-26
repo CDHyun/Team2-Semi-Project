@@ -18,7 +18,7 @@ public class JazzRegisterCommand implements JazzCommand {
 		String uEmail = request.getParameter("uEmail");
 		
 		UserDao userDao = new UserDao();
-		userDao.signUp(uid, uPassword, uName, uPhone, uAddress, uEmail);
+		boolean result = userDao.signUp(uid, uPassword, uName, uPhone, uAddress, uEmail);
 		
 		
 	}
