@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 <meta charset="UTF-8">
 <title>Login Page</title>
 <!-- Javascript Functions -->
@@ -39,7 +40,7 @@
 			return;
 		}
 		
-		if(uPassword.length ===0){
+		if(uPassword.length === 0){
 			showAlert("비밀번호를 입력하세요.");
 			return;
 		}
@@ -50,17 +51,22 @@
 	
 </script>
 
-
 <style>
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 999;
+	background-color: #fff;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 body {
 	font-family: Arial, sans-serif;
 	background-color: #f2f2f2;
 	margin: 0;
 	padding: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
 }
 
 .container {
@@ -70,6 +76,7 @@ body {
 	padding: 20px;
 	width: 400px;
 	margin: 0 auto;
+	margin-top: 100px;
 }
 
 h2 {
@@ -88,7 +95,7 @@ h2 {
 	border: 1px solid #ccc;
 	outline: none;
 	transition: border-color 0.3s;
-	box-sizing: border-box; /* 추가된 부분: 입력 영역이 내부 패딩을 포함하도록 설정 */
+	box-sizing: border-box;
 }
 
 .form-group input:focus {
@@ -113,27 +120,33 @@ h2 {
 .background {
 	background-color: #f2f2f2;
 	padding: 20px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	min-height: 100vh;
 }
 
 .alert-box {
 	position: fixed;
-	z-index: 9999;
-	background-color: rgba(0, 0, 0, 0.8);
+	z-index: 999;
+	background-color: rgba(0, 0, 0, 0.7);
 	color: #fff;
-	padding: 20px;
-	border-radius: 10px;
-	font-size: 16px;
+	padding: 10px 20px;
+	border-radius: 5px;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
 }
+
+a {
+	color: dodgerblue;
+}
 </style>
+
 </head>
 <body>
+	<!-- Header Start -->
+	<div class="header">
+		<jsp:include page="assets/common/include_common_header.jsp"/>
+	</div>
+	<!-- Header End -->
 	<div class="background">
 		<div class="container">
 			<h2>회원 로그인</h2>
@@ -150,5 +163,6 @@ h2 {
 			</form>
 		</div>
 	</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
