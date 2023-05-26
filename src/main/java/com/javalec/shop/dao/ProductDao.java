@@ -83,20 +83,21 @@ public class ProductDao {
 		
 		try {
 			connection = dataSource.getConnection();
-			String WhereDefault = "select  pName, pBrandName, pPrice,pImage  from product";
+			String WhereDefault = "select  pCode, pName, pBrandName, pPrice,pImage  from product";
 			//String WhereDefault2 = " where " + queryName + " like '%" +queryContent + "%'";
 			preparedStatement = connection.prepareStatement(WhereDefault);
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
-				String pName = resultSet.getString(1);
-				String pBrandName = resultSet.getString(2);
-				int pPrice = resultSet.getInt(3);
-				String pImage = resultSet.getString(4);
+				int pCode = resultSet.getInt(1);
+				String pName = resultSet.getString(2);
+				String pBrandName = resultSet.getString(3);
+				int pPrice = resultSet.getInt(4);
+				String pImage = resultSet.getString(5);
 			
 				
 			
-				ProductDto dto = new ProductDto(pName, pBrandName, pPrice, pImage);
+				ProductDto dto = new ProductDto(pCode, pName, pBrandName, pPrice, pImage);
 				dtos.add(dto);
 
 			}
@@ -129,6 +130,7 @@ public class ProductDao {
 	
 	
 	public ProductDto showDetail(String code) {
+		
 		ProductDto dto = null;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -136,11 +138,10 @@ public class ProductDao {
 		
 		try {
 			connection = dataSource.getConnection();
-			String query = "select pImage, pCode, pBrandName, pName, pPrice from product";
+			String query = "select pImage, pCode, pBrandName, pName, pPrice from product where pCode = ?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, Integer.parseInt(code));
 			resultSet = preparedStatement.executeQuery();
-			
 			if(resultSet.next()) {
 				String pImage = resultSet.getString(1);
 				int pCode = Integer.parseInt(resultSet.getString(2));

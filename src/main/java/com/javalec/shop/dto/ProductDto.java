@@ -50,8 +50,9 @@ public class ProductDto {
 
 
 
-	public ProductDto(String pName, String pBrandName, int pPrice, String pImage) {
+	public ProductDto(int pCode, String pName, String pBrandName, int pPrice, String pImage) {
 		super();
+		this.pCode = pCode;
 		this.pName = pName;
 		this.pBrandName = pBrandName;
 		this.pPrice = pPrice;

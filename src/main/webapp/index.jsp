@@ -10,7 +10,7 @@
 <body>
 
 
-<form action="product_details.jsp" method="post">
+<form action="product_details.do" method="post">
 
 <table border="" style="border: 1px solid black; margin-left: auto; margin-right: auto;">
   <caption>이미지 클릭 시 상세페이지로 이동합니다.</caption>
@@ -18,7 +18,7 @@
         <th>pImage</th>
         <c:forEach items="${list}" var="dto">
             <td>
-                <a href="product_details.jsp">
+                <a href="product_details.do?pCode=${dto.pCode}">
                     <img alt="image" src="${dto.pImage}" width="100" height="100"><br/>
                     
                 </a>
@@ -45,7 +45,7 @@
     </tr>
 </table>
 
-<input type="hidden" name="pCode" value="${content_view.pCode}">
+<input type="hidden" name="pCode" value="${dto.pCode}">
 </form>
 </body>
 </html>
