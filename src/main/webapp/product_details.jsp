@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
         <tr>
             <td>
                 <dl>		
-                    <dd><img alt="image" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2F20150810_18%2Fdrog7_1439181539344IL1RU_JPEG%2FIMG_3593.JPG&type=sc960_832" width="200" height="200"></dd>
+                    <dd><img alt="image" src="${content_view.pImage }" width="200" height="200"></dd>
                     <dd>pCode</dd>
                     <dd><input type="text" name="pCode" value="${content_view.pCode}" readonly="readonly"></dd>
                     <dd>브랜드명</dd>
