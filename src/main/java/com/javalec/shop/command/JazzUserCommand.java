@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.javalec.shop.dao.UserDao;
 
@@ -36,11 +37,17 @@ public class JazzUserCommand extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession session = request.getSession();
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		String uid = request.getParameter("uid");
-		response.getWriter().write(new UserDao().checkDuplicateId(uid));
+		System.out.println("UserID : " + uid);
+//		response.getWriter().write(new UserDao().checkDuplicateId(uid));
+		UserDao userDao = new UserDao();
+	    int result = userDao.checkDuplicateId(uid);
+	    String jsonResponse = "{\"result\": " + result + "}";
+	    System.out.println("json" + jsonResponse);
+	    response.getWriter().write(result + "");
 		
 		
 		

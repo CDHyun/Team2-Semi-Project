@@ -65,8 +65,6 @@ public class UserDao {
 		return result;
 	}
 	
-	
-	
 	public int checkDuplicateId(String uid) {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -79,13 +77,10 @@ public class UserDao {
 			String query = "select count(*) from user where uid = ?";
 			ps = con.prepareStatement(query);
 			ps.setString(1, uid);
-			
 			rs = ps.executeQuery();
 			if(rs.next()) {
 				rowCount = rs.getInt(1);
 			}
-			
-			/* Slack Test */
 			
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -99,7 +94,7 @@ public class UserDao {
 				e.printStackTrace();
 			}
 		}
-		
+		System.out.println("rowCount = " + rowCount);
 		return rowCount;
 	}
 	

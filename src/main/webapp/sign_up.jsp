@@ -33,11 +33,13 @@
 	
 	function checkDuplicateId() {
 	    var uid = $('#uid').val();
+	    console.log(uid);
 	    $.ajax({
 	        type: 'POST',
-	        url: 'userRegisterCheckCommand',
+	        url: './userRegisterCheckCommand',
 	        data: { uid: uid },
 	        success: function(result) {
+	        	console.log(result);
 	            if (result === 0) {
 	                showAlert("사용할 수 있는 아이디입니다.");
 	            } else {
@@ -50,19 +52,6 @@
 	    });
 	}
 
-	function check() {
-		var username = $('#uid').val();
-		<%
-		UserDao userDao = new UserDao();		
-		%>
-	<%-- 	var user = <%=userDao.checkDuplicateId(%>$('#uid').val();<%=);%> --%>
-
-		if (user !== null) {
-		  console.log("이미 가입된 사용자 이름입니다.");
-		} else {
-		  console.log("사용 가능한 사용자 이름입니다.");
-		}
-	}
 	
 
 	function registerCheck() {
@@ -249,7 +238,7 @@ h2 {
 </style>
 
 </head>
-<body onload="checkDuplicateId()">
+<body onload="">
 
 <!-- Header Start -->
 <div class="header">
@@ -261,7 +250,7 @@ h2 {
 	<h2>회원 가입</h2>
 	<form action="register.do" name="register">
 		<div class="form-group">
-			아이디 <input type="text" name="uid" value="${sessionScope.UID}">
+			아이디 <input type="text" id="uid" name="uid" value="${sessionScope.UID}">
 			<input type="button" value="중복체크" onclick="checkDuplicateId()">
 		</div>
 		<div class="form-group">
