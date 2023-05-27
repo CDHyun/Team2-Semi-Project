@@ -49,7 +49,7 @@ public class ProductDao {
 	
 	
 	
-	
+		
 	
 	
 	
@@ -174,7 +174,46 @@ public class ProductDao {
 	}// contentView
 	
 	
-	
+	public ArrayList<ProductDto> searchSize(String code) {
+		ArrayList<ProductDto> dtos = new ArrayList<ProductDto>();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			String query = "select pSize from productoption po, product p where p.pCode = po.pCode and p.pCode = ? order by pSize asc";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, Integer.parseInt(code));
+			resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				String pSize = resultSet.getString(1);
+				
+				
+				ProductDto dto = new ProductDto(pSize);
+				dtos.add(dto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(resultSet != null){ // 무언가 들어가 있으면close
+					resultSet.close();
+				}
+				if(preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if(connection != null) {
+					connection.close();
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return dtos;
+	}
 	
 	
 	
