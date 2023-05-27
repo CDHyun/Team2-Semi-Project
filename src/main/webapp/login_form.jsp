@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Login Page</title>
 <!-- Javascript Functions -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	/* 1. 알림 창을 화면 중앙에 표시 */
 	function showAlert(message) {
@@ -31,21 +32,53 @@
 
 	/* 2. 로그인 체크 */
 	function loginCheck() {
-		const form = document.login_form;
-		const uid = form.uid.value.trim();
-		const uPassword = form.uPassword.value.trim();
-
-		if(uid.length === 0) {
-			showAlert("아이디를 입력하세요.");
-			return;
-		}
-		
-		if(uPassword.length === 0){
-			showAlert("비밀번호를 입력하세요.");
-			return;
-		}
-
-		form.submit();
+	    const uid = $('#uid').val();
+	    const uPassword = $('#uPassword').val();
+	    const form = document.login_form
+	    
+	    if(uid.trim().length === 0){
+	    	showAlert("아이디를 입력해주세요.");
+	    	return;
+	    }
+	    
+	    if(uPassword.trim().length === 0){
+	    	showAlert("비밀번호를 입력해주세요.");
+	    	return;
+	    }
+	    
+	    
+	    console.log(uid);
+	    console.log(uPassword);
+	    $.ajax({
+	        type: 'POST',
+	        url: './JazzUserLoginCommand',
+	        data: {
+	        	uid: uid,
+	        	uPassword: uPassword
+	        	},
+	        success: function(result) {
+	        	console.log(result);
+	            if(result === "0"){
+	            	showAlert("아이디 혹은 비밀번호를 확인해주세요.")
+	            	return;
+	            }
+	            if(result === "-1"){
+	            	showAlert("탈퇴한 회원입니다.")
+	            	return;
+	            }
+	            if(result === "-2"){
+	            	showAlert("존재하지 않는 회원입니다.")
+	            	return;
+	            }
+	            if(result === "1") {
+	                showAlert("로그인 성공!");
+	                form.submit();
+	            }
+	        },
+	        error: function() {
+	            showAlert("오류가 발생했습니다. 다시 시도해주세요.");
+	        }
+	    });
 	}
 	
 	
@@ -152,10 +185,10 @@ a {
 			<h2>회원 로그인</h2>
 			<form action="login.do" name="login_form">
 				<div class="form-group">
-					<input type="text" name="uid" placeholder="아이디">
+					<input type="text" id="uid" name="uid" placeholder="아이디">
 				</div>
 				<div class="form-group">
-					<input type="password" name="uPassword" placeholder="비밀번호">
+					<input type="password" id="uPassword" name="uPassword" placeholder="비밀번호">
 				</div>
 				<input type="button" class="button" value="로그인" onclick="loginCheck()"><br />
 				아직 회원이 아니세요? <a href="sign_up.jsp">회원가입</a>
