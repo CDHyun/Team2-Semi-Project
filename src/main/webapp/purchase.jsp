@@ -8,6 +8,7 @@
 </head>
 <body>
 <%
+
 	request.setCharacterEncoding("utf-8");
 	String uid = request.getParameter("uid");
 	String uName = request.getParameter("uName");
@@ -17,6 +18,8 @@
 	String pSize = request.getParameter("pSize");
 	String pcQty = request.getParameter("pcQty");
 	String pPrice = request.getParameter("pPrice");
+	
+	
 
 %>
 
@@ -39,13 +42,16 @@
 	</div>
 	<div>
 		<h3>배송지</h3>
-		이름 : ${uid }<br/>
-		전화번호 : ${uphone }<br/>
-		배송지 : <input type="text" name="delivery" size="50"> <br/>
+		이름 :${uName }<br/>
+		전화번호 :${uPhone }<br/>
+		주소 :${uAddress }<br/>
+		<%
+		session.invalidate(); 
+		%>
 		 <br/>
 		  <br/>
-		  
 	<hr/>
+	
 	
 	</div>
 	<div>

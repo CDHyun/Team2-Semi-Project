@@ -6,10 +6,7 @@ public class PurchaseDto {
 	String uPhone;
 	String uName;
 	String uAddress;
-	String pBrandName;
-	String pSize;
-	String pcQty;
-	String pPrice;
+	
 
 	
 	public PurchaseDto() {
@@ -17,17 +14,20 @@ public class PurchaseDto {
 	}
 
 
-	public PurchaseDto(String uid, String uPhone, String uName, String uAddress, String pBrandName, String pSize,
-			String pcQty, String pPrice) {
+	public PurchaseDto(String uid, String uPhone, String uName, String uAddress) {
 		super();
 		this.uid = uid;
 		this.uPhone = uPhone;
 		this.uName = uName;
 		this.uAddress = uAddress;
-		this.pBrandName = pBrandName;
-		this.pSize = pSize;
-		this.pcQty = pcQty;
-		this.pPrice = pPrice;
+	
+	}
+
+	public PurchaseDto(String uPhone, String uName, String uAddress) {
+		super();
+		this.uPhone = uPhone;
+		this.uName = uName;
+		this.uAddress = uAddress;
 	}
 
 
@@ -71,56 +71,6 @@ public class PurchaseDto {
 	}
 
 
-	public String getpBrandName() {
-		return pBrandName;
-	}
-
-
-	public void setpBrandName(String pBrandName) {
-		this.pBrandName = pBrandName;
-	}
-
-
-	public String getpSize() {
-		return pSize;
-	}
-
-
-	public void setpSize(String pSize) {
-		this.pSize = pSize;
-	}
-
-
-	public String getPcQty() {
-		return pcQty;
-	}
-
-
-	public void setPcQty(String pcQty) {
-		this.pcQty = pcQty;
-	}
-
-
-	public String getpPrice() {
-		return pPrice;
-	}
-
-
-	public void setpPrice(String pPrice) {
-		this.pPrice = pPrice;
-	}
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

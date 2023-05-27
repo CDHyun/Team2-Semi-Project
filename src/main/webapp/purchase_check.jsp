@@ -30,7 +30,7 @@
 		</tr>
 		<c:forEach items="${list}" var="dto">
 		<tr>
-			<td><a href="content_view.do?pcno=${dto.pcno}">${dto.pcno}</a></td>
+			<td>${dto.pcno}</td>
 			<td>${dto.pImage}</td>
 			<td>${dto.pCode}</td>
 			<td>${dto.pBrandName}</td>
