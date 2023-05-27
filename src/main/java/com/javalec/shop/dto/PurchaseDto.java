@@ -6,8 +6,16 @@ public class PurchaseDto {
 	String uPhone;
 	String uName;
 	String uAddress;
+	String pcNo;
+	String pImage;
+	String pCode;
+	String pBrandName;
+	String pPrice;
+	String pSize;
+	String pcQty;
+	String pcInsertDate;
 	
-
+	
 	
 	public PurchaseDto() {
 		// TODO Auto-generated constructor stub
@@ -28,6 +36,23 @@ public class PurchaseDto {
 		this.uPhone = uPhone;
 		this.uName = uName;
 		this.uAddress = uAddress;
+	}
+
+
+	
+
+
+	public PurchaseDto(String pcNo, String pImage, String pCode, String pBrandName, String pPrice, String pSize,
+			String pcQty, String pcInsertDate) {
+		super();
+		this.pcNo = pcNo;
+		this.pImage = pImage;
+		this.pCode = pCode;
+		this.pBrandName = pBrandName;
+		this.pPrice = pPrice;
+		this.pSize = pSize;
+		this.pcQty = pcQty;
+		this.pcInsertDate = pcInsertDate;
 	}
 
 
@@ -71,13 +96,88 @@ public class PurchaseDto {
 	}
 
 
+	public String getPcNo() {
+		return pcNo;
+	}
+
+
+	public void setPcNo(String pcNo) {
+		this.pcNo = pcNo;
+	}
+
+
+	public String getpImage() {
+		return pImage;
+	}
+
+
+	public void setpImage(String pImage) {
+		this.pImage = pImage;
+	}
+
+
+	public String getpCode() {
+		return pCode;
+	}
+
+
+	public void setpCode(String pCode) {
+		this.pCode = pCode;
+	}
+
+
+	public String getpBrandName() {
+		return pBrandName;
+	}
+
+
+	public void setpBrandName(String pBrandName) {
+		this.pBrandName = pBrandName;
+	}
+
+
+	public String getpPrice() {
+		return pPrice;
+	}
+
+
+	public void setpPrice(String pPrice) {
+		this.pPrice = pPrice;
+	}
+
+
+	public String getpSize() {
+		return pSize;
+	}
+
+
+	public void setpSize(String pSize) {
+		this.pSize = pSize;
+	}
+
+
+	public String getPcQty() {
+		return pcQty;
+	}
+
+
+	public void setPcQty(String pcQty) {
+		this.pcQty = pcQty;
+	}
+
+
+	public String getPcInsertDate() {
+		return pcInsertDate;
+	}
+
+
+	public void setPcInsertDate(String pcInsertDate) {
+		this.pcInsertDate = pcInsertDate;
+	}
+
+
 	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

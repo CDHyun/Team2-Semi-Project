@@ -46,7 +46,7 @@
 <br/>
 <br/>
 <hr/>
-<form action="index_view.do">
+<form action="index.do">
 <input type="submit" value="확인"><br/>
 </form>
 

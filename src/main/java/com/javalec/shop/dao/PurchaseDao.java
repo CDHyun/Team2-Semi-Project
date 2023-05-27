@@ -3,6 +3,7 @@ package com.javalec.shop.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -77,4 +78,68 @@ public class PurchaseDao {
 		return beanList;
 	}
 
+	
+		  public ArrayList<PurchaseDto> purchaseList() {
+			  ArrayList<PurchaseDto> dtos = new ArrayList<PurchaseDto>();
+			  Connection connection = null;
+				PreparedStatement preparedStatement = null;
+				ResultSet resultSet = null;
+
+		  
+
+		  try {
+			  connection = dataSource.getConnection();
+			  String query = "SELECT pcNo, pImage, pCode, pBrandName, pPrice, pSize, pcQty, pcInsertDate " +
+	        				"FROM purchase " +
+	        				"JOIN product ON purchase.pCode = product.pCode";
+			  preparedStatement = connection.prepareStatement(query);
+	             resultSet =  preparedStatement.executeQuery();
+	             
+	            
+	            while (resultSet.next()) {
+	            	int PcNo = resultSet.getInt("PcNo");
+	    			String pImage = resultSet.getString("pImage");
+	    			String pCode = resultSet.getString("pCode");
+	    			String pBrandName = resultSet.getString("pBrandName");
+	    			String pPrice = resultSet.getString("pPrice");
+	    			String pSize = resultSet.getString("pSize");
+	    			Timestamp pcInsertDate = resultSet.getTimestamp("pcInsertDate");
+	            	
+	    			PurchaseDto dto = new PurchaseDto(query, pImage, pCode, pBrandName, pPrice, pSize, pPrice, pSize);
+	    			dtos.add(dto);
+	    		}
+	    		
+	    	} catch (Exception e) {
+	    		e.printStackTrace();
+	    	}finally {
+	    		try {
+	    			if(resultSet != null) resultSet.close();
+	    			if(preparedStatement !=null)preparedStatement.close();
+	    			if(connection != null) connection.close();
+	    		}catch (Exception e) {
+	    		e.printStackTrace();
+	    		}
+	    	}
+	    	
+	    	return dtos;
+
+	    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 } // END
