@@ -49,13 +49,6 @@ public class JazzUserRegisterCommand extends HttpServlet implements JazzCommand 
 		String uPhone = request.getParameter("uPhone");
 		String uAddress = request.getParameter("uAddress");
 		String uEmail = request.getParameter("uEmail");
-		HttpSession session = request.getSession();
-		session.setAttribute("UID", uid);
-		session.setAttribute("UPASSWORD", uPassword);
-		session.setAttribute("UNAME", uName);
-		session.setAttribute("UPHONE", uPhone);
-		session.setAttribute("UADDRESS", uAddress);
-		session.setAttribute("UEMAIL", uEmail);
 		
 		UserDao userDao = new UserDao();
 		String msg = "";

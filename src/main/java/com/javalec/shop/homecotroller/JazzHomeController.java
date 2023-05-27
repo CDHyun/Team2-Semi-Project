@@ -59,8 +59,7 @@ public class JazzHomeController extends HttpServlet {
 		
 		switch(com) {
 		case("/register.do"):
-			command = new JazzUserRegisterCommand();
-			command.execute(request, response);
+			/* ajax로 검사하고 페이지 반환해서 다른 코드 필요 없음. */
 			viewPage = "login_form.jsp";
 			break;
 		case("/index.do"):
