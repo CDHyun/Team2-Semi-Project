@@ -9,11 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.storeconfig.JarScannerSF;
-
 import com.javalec.shop.command.JazzCommand;
 import com.javalec.shop.command.JazzIndexCommand;
 import com.javalec.shop.command.JazzProductCommand;
+import com.javalec.shop.command.JazzPurchaseCommand;
 import com.javalec.shop.command.JazzRegisterCommand;
 
 
@@ -45,7 +44,6 @@ public class JazzHomeController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
 		actionDo(request, response);
 	}
 
@@ -63,6 +61,7 @@ public class JazzHomeController extends HttpServlet {
 			command = new JazzRegisterCommand();
 			command.execute(request, response);
 			String view = request.getParameter("view");
+			System.out.println("HomeView : " + view);
 			viewPage = view;
 			break;
 		case("/index.do"):
@@ -75,11 +74,16 @@ public class JazzHomeController extends HttpServlet {
 	         command.execute(request, response);
 	         viewPage = "product_details.jsp";
 	         break;
-	      
+		case("/purchase.do"):
+			command = new JazzPurchaseCommand();
+			command.execute(request, response);
+			viewPage = "purchase.jsp";
+			break;
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 	}	// End actionDo
+	
 	
 }	// End Class

@@ -1,3 +1,4 @@
+<%@page import="com.javalec.shop.dao.UserDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Sign Up Page</title>
 <!-- JavaScript Functions -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	/* 1. 알림 창을 화면 중앙에 표시 */
 	function showAlert(message) {
@@ -28,6 +30,40 @@
 			alertBox.remove();
 		}, 3000);
 	}
+	
+	function checkDuplicateId() {
+	    var uid = $('#uid').val();
+	    $.ajax({
+	        type: 'POST',
+	        url: 'userRegisterCheckCommand',
+	        data: { uid: uid },
+	        success: function(result) {
+	            if (result === 0) {
+	                showAlert("사용할 수 있는 아이디입니다.");
+	            } else {
+	                showAlert("사용할 수 없는 아이디입니다.");
+	            }
+	        },
+	        error: function() {
+	            showAlert("오류가 발생했습니다. 다시 시도해주세요.");
+	        }
+	    });
+	}
+
+	function check() {
+		var username = $('#uid').val();
+		<%
+		UserDao userDao = new UserDao();		
+		%>
+	<%-- 	var user = <%=userDao.checkDuplicateId(%>$('#uid').val();<%=);%> --%>
+
+		if (user !== null) {
+		  console.log("이미 가입된 사용자 이름입니다.");
+		} else {
+		  console.log("사용 가능한 사용자 이름입니다.");
+		}
+	}
+	
 
 	function registerCheck() {
 	    const form = document.register;
@@ -130,13 +166,6 @@
 			return
 		}
 		
-	    var checkDuplicateId = '<%=request.getParameter("result")%>';
-	    if (!checkDuplicateId) {
-	        showAlert("중복 되는 아이디입니다.");
-	        form.uid.select();
-	        return;
-	    }
-
 	    form.submit();
 		
 	}	// End function
@@ -220,7 +249,7 @@ h2 {
 </style>
 
 </head>
-<body>
+<body onload="checkDuplicateId()">
 
 <!-- Header Start -->
 <div class="header">
@@ -232,25 +261,26 @@ h2 {
 	<h2>회원 가입</h2>
 	<form action="register.do" name="register">
 		<div class="form-group">
-			아이디 <input type="text" name="uid">
+			아이디 <input type="text" name="uid" value="${sessionScope.UID}">
+			<input type="button" value="중복체크" onclick="checkDuplicateId()">
 		</div>
 		<div class="form-group">
-			비밀번호 <input type="password" name="uPassword">
+			비밀번호 <input type="password" name="uPassword" value="${sessionScope.UPASSWORD}">
 		</div>
 		<div class="form-group">
 			비밀번호 확인 <input type="password" name="uRePass">
 		</div>
 		<div class="form-group">
-			이름 <input type="text" name="uName">
+			이름 <input type="text" name="uName" value="${sessionScope.UNAME}">
 		</div>
 		<div class="form-group">
-			전화번호 <input type="text" name="uPhone">
+			전화번호 <input type="text" name="uPhone" value="${sessionScope.UPHONE}">
 		</div>
 		<div class="form-group">
-			이메일 <input type="text" name="uEmail">
+			이메일 <input type="text" name="uEmail" value="${sessionScope.UEMAIL}">
 		</div>
 		<div class="form-group">
-			주소 <input type="text" name="uAddress">
+			주소 <input type="text" name="uAddress" ${sessionScope.UADDRESS}>
 		</div>
 		<input type="button" class="button" value="회원가입" onclick="registerCheck()">
 	</form>

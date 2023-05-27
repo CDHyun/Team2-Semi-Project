@@ -2,6 +2,7 @@ package com.javalec.shop.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -62,6 +63,44 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	
+	
+	public int checkDuplicateId(String uid) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int rowCount = 0;
+		
+		try {
+			con = dataSource.getConnection();
+			
+			String query = "select count(*) from user where uid = ?";
+			ps = con.prepareStatement(query);
+			ps.setString(1, uid);
+			
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				rowCount = rs.getInt(1);
+			}
+			
+			/* Slack Test */
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("ERROR");
+		} finally {
+			try {
+				if(con != null) con.close();
+				if(ps != null) ps.close();
+				if(rs != null) rs.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rowCount;
 	}
 	
 	
