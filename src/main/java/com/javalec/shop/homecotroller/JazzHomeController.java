@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.javalec.shop.command.JazzCommand;
 import com.javalec.shop.command.JazzIndexCommand;
 import com.javalec.shop.command.JazzProductCommand;
+import com.javalec.shop.command.JazzPurchaseCheckCommand;
 import com.javalec.shop.command.JazzPurchaseCommand;
 import com.javalec.shop.command.JazzRegisterCommand;
 
@@ -60,9 +61,7 @@ public class JazzHomeController extends HttpServlet {
 		case("/register.do"):
 			command = new JazzRegisterCommand();
 			command.execute(request, response);
-			String view = request.getParameter("view");
-			System.out.println("HomeView : " + view);
-			viewPage = view;
+			viewPage = "login_form.jsp";
 			break;
 		case("/index.do"):
 			command = new JazzIndexCommand();
@@ -78,6 +77,11 @@ public class JazzHomeController extends HttpServlet {
 			command = new JazzPurchaseCommand();
 			command.execute(request, response);
 			viewPage = "purchase.jsp";
+			break;
+		case("/purchase_Check.do"):
+			command = new JazzPurchaseCheckCommand();
+			command.execute(request, response);
+			viewPage = "purchase_check.jsp";
 			break;
 		}
 		

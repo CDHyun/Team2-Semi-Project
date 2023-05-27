@@ -45,12 +45,9 @@ public class JazzUserCommand extends HttpServlet {
 //		response.getWriter().write(new UserDao().checkDuplicateId(uid));
 		UserDao userDao = new UserDao();
 	    int result = userDao.checkDuplicateId(uid);
-	    String jsonResponse = "{\"result\": " + result + "}";
-	    System.out.println("json" + jsonResponse);
+//	    String jsonResponse = "{\"result\": " + result + "}";
+//	    System.out.println("json" + jsonResponse);
 	    response.getWriter().write(result + "");
-		
-		
-		
 	}
 
 }

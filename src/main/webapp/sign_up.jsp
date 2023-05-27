@@ -33,6 +33,12 @@
 	
 	function checkDuplicateId() {
 	    var uid = $('#uid').val();
+	    const regExpAdmin = /^(admin|root|insert|update|delete|select)$/
+	    if (regExpAdmin.test(uid.toLowerCase())) {
+	        showAlert("Java Fundmental 규약에 어긋나는 아이디는 사용 불가능합니다.");
+	        form.uid.select();
+	        return;
+	    }
 	    console.log(uid);
 	    $.ajax({
 	        type: 'POST',
@@ -40,7 +46,7 @@
 	        data: { uid: uid },
 	        success: function(result) {
 	        	console.log(result);
-	            if (result === 0) {
+	            if (result === "0") {
 	                showAlert("사용할 수 있는 아이디입니다.");
 	            } else {
 	                showAlert("사용할 수 없는 아이디입니다.");
@@ -51,12 +57,33 @@
 	        }
 	    });
 	}
-
-	
-
 	function registerCheck() {
+	    var uid = $('#uid').val();
+	    const regExpAdmin = /^(admin|root|insert|update|delete|select)$/
+	    if (regExpAdmin.test(uid.toLowerCase())) {
+	        showAlert("Java Fundmental 규약에 어긋나는 아이디는 사용 불가능합니다.");
+	        form.uid.select();
+	        return;
+	    }
+	    console.log(uid);
+	    $.ajax({
+	        type: 'POST',
+	        url: './userRegisterCheckCommand',
+	        data: { uid: uid },
+	        success: function(result) {
+	        	console.log(result);
+	            if (result === "0") {
+	                showAlert("사용할 수 있는 아이디입니다.");
+	            } else {
+	                showAlert("사용할 수 없는 아이디입니다.");
+	            }
+	        },
+	        error: function() {
+	            showAlert("오류가 발생했습니다. 다시 시도해주세요.");
+	        }
+	    });
+	    
 	    const form = document.register;
-	    const uid = form.uid.value
 	    const uPassword = form.uPassword.value
 	    const uRePass = form.uRePass.value
 	    const uName = form.uName.value
@@ -156,8 +183,10 @@
 		}
 		
 	    form.submit();
+	    
+	}
+
 		
-	}	// End function
 </script>
 
 
