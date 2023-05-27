@@ -12,8 +12,7 @@ public class ProductDto {
 	Timestamp pUpdateDate;
 	Timestamp pDeleteDate;
 	String pImage;
-	
-	
+	String pSize;
 	
 	
 	
@@ -39,6 +38,18 @@ public class ProductDto {
 		this.pBrandName = pBrandName;
 		this.pPrice = pPrice;
 		this.pImage = pImage;
+	}
+
+
+
+
+
+
+
+
+	public ProductDto(String pSize) {
+		super();
+		this.pSize = pSize;
 	}
 
 
@@ -221,6 +232,32 @@ public class ProductDto {
 
 	public void setpImage(String pImage) {
 		this.pImage = pImage;
+	}
+
+
+
+
+
+
+
+
+
+
+	public String getpSize() {
+		return pSize;
+	}
+
+
+
+
+
+
+
+
+
+
+	public void setpSize(String pSize) {
+		this.pSize = pSize;
 	}
 
 

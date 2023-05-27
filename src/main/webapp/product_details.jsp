@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %> 
+    <%@taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,20 +26,18 @@
                     <dd>사이즈</dd>
                     <dd>
                         <select name="pSize">
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
-                        </select>
+   						 	<c:forEach items="${list}" var="dtos">
+        						<option value="${dtos.pSize}">${dtos.pSize}</option>
+    						</c:forEach>
+							</select>
                     </dd>
                     <dd>수량</dd>
                     <dd><input type="number" name="pcQty" value="1"></dd>
                 </dl>
                 
                 <dl>
-                     <dd><a href="장바구니">장바구니 담기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="결제">바로 주문</a></dd>
+                     <dd><a href="장바구니">장바구니 담기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="purchase.do">바로 주문</a></dd>
                 </dl>
-                     
-
+</form>
 </body>
 </html>
