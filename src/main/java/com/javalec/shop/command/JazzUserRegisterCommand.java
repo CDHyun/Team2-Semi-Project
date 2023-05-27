@@ -29,6 +29,20 @@ public class JazzUserRegisterCommand extends HttpServlet implements JazzCommand 
      * @see JazzCommand#execute(HttpServletRequest, HttpServletResponse)
      */
     public void execute(HttpServletRequest request, HttpServletResponse response)  { 
+ 
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String uid = request.getParameter("uid");
 		String uPassword = request.getParameter("uPassword");
 		String uName = request.getParameter("uName");
@@ -44,39 +58,24 @@ public class JazzUserRegisterCommand extends HttpServlet implements JazzCommand 
 		session.setAttribute("UEMAIL", uEmail);
 		
 		UserDao userDao = new UserDao();
-		boolean result = userDao.signUp(uid, uPassword, uName, uPhone, uAddress, uEmail);
-		System.out.println(result);
 		String msg = "";
 		String view = "";
-		if(result) {
+		int result = userDao.signUp(uid, uPassword, uName, uPhone, uAddress, uEmail);
+		if(result > 0) {
 			msg = "회원가입을 축하합니다!";
-			view = "login_from.jsp";
+			response.getWriter().write(result + "");
 			request.setAttribute("result", result);
-			request.setAttribute("view", view);
 			request.setAttribute("msg", msg);
 		} else {
 			msg = "중복되는 아이디입니다.";
-			view = "sign_up.jsp";
-			System.out.println("view : " + view);
+			response.getWriter().write(result + "");
 			request.setAttribute("result", result);
-			request.setAttribute("view", view);
 			request.setAttribute("msg", msg);
 		}
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		
+		
 	}
 
 }

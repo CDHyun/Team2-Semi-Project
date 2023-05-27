@@ -14,7 +14,7 @@ import com.javalec.shop.command.JazzIndexCommand;
 import com.javalec.shop.command.JazzProductCommand;
 import com.javalec.shop.command.JazzPurchaseCheckCommand;
 import com.javalec.shop.command.JazzPurchaseCommand;
-import com.javalec.shop.command.JazzRegisterCommand;
+import com.javalec.shop.command.JazzUserRegisterCommand;
 
 
 /**
@@ -59,7 +59,7 @@ public class JazzHomeController extends HttpServlet {
 		
 		switch(com) {
 		case("/register.do"):
-			command = new JazzRegisterCommand();
+			command = new JazzUserRegisterCommand();
 			command.execute(request, response);
 			viewPage = "login_form.jsp";
 			break;

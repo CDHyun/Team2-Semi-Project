@@ -33,9 +33,9 @@ public class UserDao {
 		}
 	}
 	
-	public boolean signUp(String uid, String uPassword, String uName, String uPhone, String uAddress, String uEmail) {
+	public int signUp(String uid, String uPassword, String uName, String uPhone, String uAddress, String uEmail) {
 		int count = 0;
-		boolean result = false;
+		int result = 0;
 		
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -55,7 +55,8 @@ public class UserDao {
 			count = ps.executeUpdate();
 			
 			if(count>0) {
-				result = true;
+				/* 회원가입 성공 */
+				result = 1;
 			}
 			/* Slack Test */
 			

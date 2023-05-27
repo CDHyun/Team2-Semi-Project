@@ -32,7 +32,7 @@
 	}
 	
 	function checkDuplicateId() {
-	    var uid = $('#uid').val();
+	    const uid = $('#uid').val();
 	    const regExpAdmin = /^(admin|root|insert|update|delete|select)$/
 	    if (regExpAdmin.test(uid.toLowerCase())) {
 	        showAlert("Java Fundmental 규약에 어긋나는 아이디는 사용 불가능합니다.");
@@ -57,32 +57,10 @@
 	        }
 	    });
 	}
+	
 	function registerCheck() {
-	    var uid = $('#uid').val();
-	    const regExpAdmin = /^(admin|root|insert|update|delete|select)$/
-	    if (regExpAdmin.test(uid.toLowerCase())) {
-	        showAlert("Java Fundmental 규약에 어긋나는 아이디는 사용 불가능합니다.");
-	        form.uid.select();
-	        return;
-	    }
-	    console.log(uid);
-	    $.ajax({
-	        type: 'POST',
-	        url: './userRegisterCheckCommand',
-	        data: { uid: uid },
-	        success: function(result) {
-	        	console.log(result);
-	            if (result === "0") {
-	                showAlert("사용할 수 있는 아이디입니다.");
-	            } else {
-	                showAlert("사용할 수 없는 아이디입니다.");
-	            }
-	        },
-	        error: function() {
-	            showAlert("오류가 발생했습니다. 다시 시도해주세요.");
-	        }
-	    });
-	    
+	   /*  var uid = $('#uid').val(); */
+	   	const uid = $('#uid').val();
 	    const form = document.register;
 	    const uPassword = form.uPassword.value
 	    const uRePass = form.uRePass.value
@@ -90,7 +68,13 @@
 	    const uPhone = form.uPhone.value
 	    const uEmail = form.uEmail.value
 	    const uAddress = form.uAddress.value
-	    
+	    const regExpAdmin = /^(admin|root|insert|update|delete|select)$/
+	    if (regExpAdmin.test(uid.toLowerCase())) {
+	        showAlert("Java Fundmental 규약에 어긋나는 아이디는 사용 불가능합니다.");
+	        form.uid.select();
+	        return;
+	    }
+    
 	    const regExpuid = /^[a-z|A-Z|0-9]*$/;
 	    const regExpuPass = /^[a-z|A-Z|0-9]*$/;
 	    const regExpuName = /^[a-z|A-Z|가-힣]*$/;
@@ -98,7 +82,6 @@
 		const regExpuEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 	    const regExpuAddress = /^[가-힣|0-9|a-z|A-Z|-|\s]*$/;
 	    
-	    const regExpAdmin = /^(admin|root|insert|update|delete|select)$/
 
 	    if (regExpAdmin.test(uid.toLowerCase())) {
 	        showAlert("Java Fundmental 규약에 어긋나는 아이디는 사용 불가능합니다.");
@@ -181,8 +164,37 @@
 			form.uAddress.select();
 			return
 		}
+	    
+	    console.log(uid);
+	    $.ajax({
+	        type: 'POST',
+	        url: './JazzUserRegisterCommand',
+	        data:
+	        {
+	        	uid: uid,
+	        	uPassword: uPassword,
+	        	uName: uName,
+	        	uPhone: uPhone,
+	        	uEmail: uEmail,
+	        	uAddress: uAddress
+	        },
+	        success: function(result) {
+	        	console.log(result);
+	            if (result === "1") {
+	                showAlert("회원 가입을 축하합니다!");
+	        		setTimeout(function() {
+					    form.submit();
+	        		}, 2000);
+	            } else {
+	                showAlert("회원 가입에 실패했습니다. 중복을 확인해주세요.");
+	                return;
+	            }
+	        },
+	        error: function() {
+	            showAlert("오류가 발생했습니다. 다시 시도해주세요.");
+	        }
+	    });
 		
-	    form.submit();
 	    
 	}
 
@@ -267,7 +279,7 @@ h2 {
 </style>
 
 </head>
-<body onload="">
+<body>
 
 <!-- Header Start -->
 <div class="header">
