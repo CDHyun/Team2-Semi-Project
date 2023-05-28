@@ -179,7 +179,7 @@ public class PurchaseDao {
 		}
 	}
 	
-	public void delete(String uid) { //BwriteCommand에서 부른걸 받는애.
+	public void purchase_delete(String uid) { //BwriteCommand에서 부른걸 받는애.
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		

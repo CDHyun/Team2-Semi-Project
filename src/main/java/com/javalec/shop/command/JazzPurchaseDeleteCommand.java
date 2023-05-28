@@ -16,7 +16,7 @@ public class JazzPurchaseDeleteCommand implements JazzCommand {
 		
 		
 		PurchaseDao dao = new PurchaseDao();
-		dao.delete(uid); //write method 부르는 애 (순서주의)
+		dao.purchase_delete(uid); //write method 부르는 애 (순서주의)
 		
 
 	}
