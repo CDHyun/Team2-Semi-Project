@@ -51,7 +51,9 @@
         button {
             margin-top: 10px;
         }
+        
     </style>
+  
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -89,7 +91,8 @@
     <!-- Header End -->
 
     <form class="body" id="purchaseForm" action="" method="get">
-        <table>
+    
+        <table >
             <caption><h4>상품 세부사항</h4></caption>
             <tr>
                 <td>
@@ -119,6 +122,7 @@
                 </td>
             </tr>
         </table>
+ 
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
