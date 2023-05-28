@@ -80,6 +80,14 @@ public class JazzHomeController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "my_account.jsp";
 			break;
+		case("/userinfoModify.do"):
+			command = new JazzUserMyAccountCommand();
+			command.execute(request, response);
+			viewPage = "my_account.jsp";
+		break;
+		case("/userSecede.do"):
+			viewPage = "index.do";
+			break;
 		case("/index.do"):
 			command = new JazzIndexCommand();
 			command.execute(request, response);

@@ -227,5 +227,46 @@ public class UserDao {
 		}
 		return beanList;
 	}
+	
+	public int userinfoModify(String uid, String uPassword, String uName, String uPhone, String uAddress, String uEmail) {
+		int count = 0;
+		int result = 0;
+
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			con = dataSource.getConnection();
+
+			String query = "update user set uPassword = ?, uName = ?, uPhone = ?, uAddress = ?, uEmail = ?, uUpdateDate = now() where uid = ?";
+			ps = con.prepareStatement(query);
+			ps.setString(1, uPassword);
+			ps.setString(2, uName);
+			ps.setString(3, uPhone);
+			ps.setString(4, uAddress);
+			ps.setString(5, uEmail);
+			ps.setString(6, uid);
+
+			count = ps.executeUpdate();
+
+			if (count > 0) {
+				/* 변경 성공 */
+				result = 1;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null)
+					con.close();
+				if (ps != null)
+					ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 
 } // End Class

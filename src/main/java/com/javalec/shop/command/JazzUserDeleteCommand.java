@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.javalec.shop.dao.UserDao;
-
 /**
- * Servlet implementation class UserModifyCommand
+ * Servlet implementation class JazzUserDeleteCommand
  */
-@WebServlet("/UserModifyCommand")
-public class UserModifyCommand extends HttpServlet implements JazzCommand {
+@WebServlet("/JazzUserDeleteCommand")
+public class JazzUserDeleteCommand extends HttpServlet implements JazzCommand {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserModifyCommand() {
+    public JazzUserDeleteCommand() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,16 +34,6 @@ public class UserModifyCommand extends HttpServlet implements JazzCommand {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String uid = request.getParameter("uid");
-		String uPassword = request.getParameter("uPassword");
-		String uName = request.getParameter("uName");
-		String uPhone = request.getParameter("uPhone");
-		String uEmail = request.getParameter("uEmail");
-		String uAddress = request.getParameter("uAddress");
-		
-		UserDao userDao = new UserDao();
-		int result = userDao.userinfoModify(uid, uPassword, uName, uPhone, uAddress, uEmail);
-		response.getWriter().write(result + "");
-		
 	}
 
 }
