@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 </head>
 
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+<nav>
 	<div class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
 			<a href="index.do"><img alt=""
@@ -32,7 +32,7 @@
 						<li><a class="nav-link" href="login_form.jsp">Login</a></li>
 					</c:if>
 					<c:if test="${not empty sessionScope.SUID}">
-						<li><a class="nav-link" href="#">My Page</a></li>
+						<li><a class="nav-link" href="my_account.do">My Page</a></li>
 						<li><a class="nav-link" href="logOut.do">LogOut</a></li>
 					</c:if>
 				</ul>

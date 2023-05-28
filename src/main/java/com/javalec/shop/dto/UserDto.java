@@ -15,6 +15,18 @@ public class UserDto {
 	public UserDto() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public UserDto(String uid, String uPassword, String uName, String uPhone, String uAddress, String uEmail,
+			String uInsertDate) {
+		super();
+		this.uid = uid;
+		this.uPassword = uPassword;
+		this.uName = uName;
+		this.uPhone = uPhone;
+		this.uAddress = uAddress;
+		this.uEmail = uEmail;
+		this.uInsertDate = uInsertDate;
+	}
 
 	public String getUid() {
 		return uid;
