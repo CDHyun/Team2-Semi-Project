@@ -6,8 +6,57 @@
 <head>
 <meta charset="UTF-8">
 <title>Index Page</title>
+
+<style>
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 999;
+	background-color: #fff;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+</style>
 </head>
+
 <body>
+
+
+<!-- Header Start -->
+	<div class="header">
+		<jsp:include page="assets/common/include_common_header.jsp"/>
+	</div>
+	<!-- Header End -->
+	<div class="background">
+		<div class="container">
+			<h2>회원 로그인</h2>
+			<form action="login.do" name="login_form">
+				<div class="form-group">
+					<input type="text" id="uid" name="uid" placeholder="아이디">
+				</div>
+				<div class="form-group">
+					<input type="password" id="uPassword" name="uPassword" placeholder="비밀번호">
+				</div>
+				<input type="button" class="button" value="로그인" onclick="loginCheck()"><br />
+				아직 회원이 아니세요? <a href="sign_up.jsp">회원가입</a>
+			</form>
+		</div>
+	</div>
+
+
+
+<div style="display: flex; justify-content: center;">
+  <form action="index.do" method="get">
+    검색 선택: 
+    <select name="query">
+      <option value="pBrandName">브랜드명</option>
+      <option value="pName" selected="selected">상품명</option>  
+    </select>
+    <input type="text" name="content" size="30">
+    <input type="submit" value="검색">
+  </form>
+</div><br/><br/><br/><br/>
 
 
 <form action="product_details.do" method="post">
@@ -15,7 +64,7 @@
 <table border="" style="border: 1px solid black; margin-left: auto; margin-right: auto;">
   <caption>이미지 클릭 시 상세페이지로 이동합니다.</caption>
     <tr>
-        <th>pImage</th>
+        <th>상품</th>
         <c:forEach items="${list}" var="dto">
             <td>
                 <a href="product_details.do?pCode=${dto.pCode}">
@@ -26,19 +75,19 @@
         </c:forEach>
     </tr>
     <tr>
-        <th>pBrandName</th>
+        <th>브랜드명</th>
         <c:forEach items="${list}" var="dto">
             <td>${dto.pBrandName}</td>
         </c:forEach>
     </tr>
     <tr>
-        <th>pName</th>
+        <th>상품명</th>
         <c:forEach items="${list}" var="dto">
             <td>${dto.pName}</td>
         </c:forEach>
     </tr>
     <tr>
-        <th>pPrice</th>
+        <th>가격</th>
         <c:forEach items="${list}" var="dto">
             <td>${dto.pPrice}</td>
         </c:forEach>
