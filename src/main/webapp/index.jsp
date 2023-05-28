@@ -29,6 +29,7 @@
             margin-left: auto;
             margin-right: auto;
             width: 100%;
+            white-space: nowrap; /* 가로 스크롤을 위해 필요한 CSS 속성 */
         }
 
         caption {
@@ -41,6 +42,12 @@
             text-align: center;
             padding: 10px;
         }
+        
+        .scrollable-table {
+        max-height: 500px;
+        overflow-y: auto;
+        overflow-x: auto; /* 가로 스크롤을 위해 필요한 CSS 속성 */
+    	}
     </style>
 </head>
 
@@ -68,6 +75,8 @@
                 </div>
             </form>
 
+
+<div class="scrollable-table">
             <table>
                 <caption>이미지 클릭 시 상세 페이지로 이동합니다.</caption>
                 <tr>
@@ -84,11 +93,34 @@
                     </c:forEach>
                 </tr>
             </table>
-        </div>
+  </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"> </script>
+        
+        <script>
+    // 마우스 휠 이벤트 핸들러
+    function handleMouseWheel(event) {
+        var table = document.querySelector('.scrollable-table');
+        var scrollAmount = event.deltaY; // 휠 동작에 따른 스크롤 양
+
+        // 스크롤 이동
+        table.scrollLeft += scrollAmount;
+        
+        // 이벤트 전파 중단
+        event.preventDefault();
+    }
+
+    // 이벤트 리스너 등록
+    var table = document.querySelector('.scrollable-table');
+    table.addEventListener('wheel', handleMouseWheel);
+</script>
+   
+    
+    
+    
+   
 </body>
 </html>
