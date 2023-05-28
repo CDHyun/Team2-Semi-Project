@@ -86,7 +86,7 @@
 <hr/>
 	</div> 
 	  
-			<form action="purchase_check.do" method="post" onsubmit="return purchaseCheck()">
+			<form action="purchase.do?pCode=${content_view.pCode}&pcQty=${param.pcQty}" method="post">
 			<input type="submit" value="결제">
 	 <br/>
 	 <br/>

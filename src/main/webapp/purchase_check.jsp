@@ -37,9 +37,9 @@
 		</tr>
 		<c:forEach items="${PurchaseList}" var="purchaseDto">
 		<tr>
-			<td><img alt="image" src="${purchaseDto.pImage }" width="200" height="200"></td>
-			<td>${purchaseDto[0].pCode}</td>
-			<td>${purchaseDto[0].pBrandName}</td>
+			<td><img alt="image" src="${purchaseDto.pImage}" width="200" height="200"></td>
+			<td>${purchaseDto.pCode}</td>
+			<td>${purchaseDto.pBrandName}</td>
 			<td>${purchaseDto.pPrice}</td>
 			<td>${purchaseDto.pSize }</td>
 			<td>${purchaseDto.pcQty }</td>
