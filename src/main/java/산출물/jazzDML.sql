@@ -39,13 +39,31 @@ values(2, 290, 30);
 insert into productOption(pCode, pSize, pStock)
 values(2, 300, 30);
 
+insert into productOption(pCode, pSize, pStock)
+values(3, 240, 30);
+insert into productOption(pCode, pSize, pStock)
+values(3, 250, 30);
+insert into productOption(pCode, pSize, pStock)
+values(3, 260, 30);
+insert into productOption(pCode, pSize, pStock)
+values(3, 270, 30);
+insert into productOption(pCode, pSize, pStock)
+values(3, 280, 30);
+insert into productOption(pCode, pSize, pStock)
+values(3, 290, 30);
+insert into productOption(pCode, pSize, pStock)
+values(3, 300, 30);
 
 
-
+commit;
 
 select * from product;
 select * from productOption;
+select * from purchase;
 
+SELECT u.uid, pcNo, pImage, p.pCode, pBrandName, pPrice, po.pSize, pcQty, pcInsertDate
+FROM purchase pc, product p, productoption po , user u
+WHERE pc.pCode = p.pCode and po.pSize = pc.pSize and po.pCode = p.pCode and u.uid = 'donghyun';
 
 -- INSERT PRODUCT
 insert into product(pName, pBrandName, pPrice, pInsertDate, pImage)
@@ -55,4 +73,4 @@ insert into product(pName, pBrandName, pPrice, pInsertDate, pImage)
 values('나이키 덩크 로우 레트로', 'NIKE', 139000, now(), 'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b1bcbca4-e853-4df7-b329-5be3c61ee057/%EB%8D%A9%ED%81%AC-%EB%A1%9C%EC%9A%B0-%EB%A0%88%ED%8A%B8%EB%A1%9C-%EB%82%A8%EC%84%B1-%EC%8B%A0%EB%B0%9C-bDdzzUjf.png');
 
 insert into product(pName, pBrandName, pPrice, pInsertDate, pImage)
-values('나이키 에어 포스 1 07', 'NIKE', 119000, now(), '')
+values('나이키 에어 포스 1 07', 'NIKE', 119000, now(), 'https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/350e7f3a-979a-402b-9396-a8a998dd76ab/%EC%97%90%EC%96%B4-%ED%8F%AC%EC%8A%A4-1-07-%EB%82%A8%EC%84%B1-%EC%8B%A0%EB%B0%9C-a2W0K4QH.png')
