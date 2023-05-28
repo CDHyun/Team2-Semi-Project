@@ -12,11 +12,11 @@ public class JazzPurchaseDeleteCommand implements JazzCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		String uid = (String)session.getAttribute("SUID");
+		int pcNo = Integer.parseInt(request.getParameter("pcNo"));
 		
 		
 		PurchaseDao dao = new PurchaseDao();
-		dao.purchase_delete(uid); //write method 부르는 애 (순서주의)
+		dao.purchase_delete(pcNo); //write method 부르는 애 (순서주의)
 		
 
 	}

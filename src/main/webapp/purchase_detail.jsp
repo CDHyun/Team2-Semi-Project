@@ -25,7 +25,6 @@
 		<br/>
 
 	<table border="1">
-		  <caption>주문 번호를 클릭시 주문취소 페이지로 이동합니다.</caption>
 		<tr>
 			<th>상품이미지</th>
 			<th>주문 번호</th>
@@ -39,7 +38,7 @@
 		<c:forEach items="${PurchaseList}" var="purchaseDto">
 		<tr>
 			<td><img alt="image" src="${purchaseDto.pImage}" width="200" height="200"></td>
-			<td><a href="purchase_detail.jsp?pcNo=${purchaseDto.pcNo}">${purchaseDto.pcNo}</a></td>
+			<td>${purchaseDto.pcNo}</td>
 			<td>${purchaseDto.pBrandName}</td>
 			<td>${purchaseDto.pPrice}</td>
 			<td>${purchaseDto.pSize }</td>
@@ -53,9 +52,13 @@
 <br/>
 <br/>
 <hr/>
-<form action="index.do">
-<input type="submit" value="확인"><br/>
+
+<form action="purchase_delete.do?pCode=${content_view.pCode}" method="post">
+			<input type="submit" value="주문취소">
+	 <br/>
+	 <br/>
 </form>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

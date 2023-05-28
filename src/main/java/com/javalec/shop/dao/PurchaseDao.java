@@ -22,8 +22,8 @@ public class PurchaseDao {
 	String uAddress;
 	String pBrandName;
 	String pSize;
-	String pcQty;
-	String pPrice;
+	int pcQty;
+	int pPrice;
 
 	DataSource dataSource;
 
@@ -179,15 +179,15 @@ public class PurchaseDao {
 		}
 	}
 	
-	public void purchase_delete(String uid) { //BwriteCommand에서 부른걸 받는애.
+	public void purchase_delete(int pcNo) { //BwriteCommand에서 부른걸 받는애.
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = dataSource.getConnection();
-			String query = "delete from purchase where uid = ?";
+			String query = "delete from purchase where pcNo = ?";
 			preparedStatement = connection.prepareStatement(query); //sql문을 쓰려고 준비.
-			preparedStatement.setString(1, uid);
+			preparedStatement.setInt(1, pcNo);
 			preparedStatement.executeUpdate();
 			
 			
