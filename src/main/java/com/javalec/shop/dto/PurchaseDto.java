@@ -1,19 +1,22 @@
 package com.javalec.shop.dto;
 
+import java.sql.Timestamp;
+
 public class PurchaseDto {
 	
 	String uid;
 	String uPhone;
 	String uName;
 	String uAddress;
-	String pcNo;
+	int pcNo;
 	String pImage;
-	String pCode;
+	int pCode;
 	String pBrandName;
-	String pPrice;
+	int pPrice;
 	String pSize;
-	String pcQty;
-	String pcInsertDate;
+	int pcQty;
+	Timestamp pcInsertDate;
+	int pStock;
 	
 	
 	
@@ -39,11 +42,10 @@ public class PurchaseDto {
 	}
 
 
-	
 
 
-	public PurchaseDto(String pcNo, String pImage, String pCode, String pBrandName, String pPrice, String pSize,
-			String pcQty, String pcInsertDate) {
+	public PurchaseDto(int pcNo, String pImage, int pCode, String pBrandName, int pPrice, String pSize, int pcQty,
+			Timestamp pcInsertDate) {
 		super();
 		this.pcNo = pcNo;
 		this.pImage = pImage;
@@ -53,6 +55,12 @@ public class PurchaseDto {
 		this.pSize = pSize;
 		this.pcQty = pcQty;
 		this.pcInsertDate = pcInsertDate;
+	}
+
+
+	public PurchaseDto(int pStock) {
+		super();
+		this.pStock = pStock;
 	}
 
 
@@ -96,12 +104,12 @@ public class PurchaseDto {
 	}
 
 
-	public String getPcNo() {
+	public int getPcNo() {
 		return pcNo;
 	}
 
 
-	public void setPcNo(String pcNo) {
+	public void setPcNo(int pcNo) {
 		this.pcNo = pcNo;
 	}
 
@@ -116,12 +124,12 @@ public class PurchaseDto {
 	}
 
 
-	public String getpCode() {
+	public int getpCode() {
 		return pCode;
 	}
 
 
-	public void setpCode(String pCode) {
+	public void setpCode(int pCode) {
 		this.pCode = pCode;
 	}
 
@@ -136,12 +144,12 @@ public class PurchaseDto {
 	}
 
 
-	public String getpPrice() {
+	public int getpPrice() {
 		return pPrice;
 	}
 
 
-	public void setpPrice(String pPrice) {
+	public void setpPrice(int pPrice) {
 		this.pPrice = pPrice;
 	}
 
@@ -156,31 +164,41 @@ public class PurchaseDto {
 	}
 
 
-	public String getPcQty() {
+	public int getPcQty() {
 		return pcQty;
 	}
 
 
-	public void setPcQty(String pcQty) {
+	public void setPcQty(int pcQty) {
 		this.pcQty = pcQty;
 	}
 
 
-	public String getPcInsertDate() {
+	public Timestamp getPcInsertDate() {
 		return pcInsertDate;
 	}
 
 
-	public void setPcInsertDate(String pcInsertDate) {
+	public void setPcInsertDate(Timestamp pcInsertDate) {
 		this.pcInsertDate = pcInsertDate;
 	}
 
 
+	public int getpStock() {
+		return pStock;
+	}
+
+
+	public void setpStock(int pStock) {
+		this.pStock = pStock;
+	}
+	
+	
 	
 
+
 	
-	
-	
+
 	
 	
 }//END

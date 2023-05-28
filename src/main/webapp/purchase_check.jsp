@@ -28,10 +28,10 @@
 			<th>주문 일자</th>
 		
 		</tr>
-		<c:forEach items="${list}" var="dto">
+		<c:forEach items="${PurchaseList}" var="dto">
 		<tr>
 			<td>${dto.pcno}</td>
-			<td>${dto.pImage}</td>
+			<td><img alt="image" src="${content_view.pImage }" width="200" height="200"></td>
 			<td>${dto.pCode}</td>
 			<td>${dto.pBrandName}</td>
 			<td>${dto.pPrice}</td>

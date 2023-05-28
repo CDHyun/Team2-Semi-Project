@@ -89,9 +89,11 @@ public class PurchaseDao {
 
 		  try {
 			  connection = dataSource.getConnection();
-			  String query = "SELECT pcNo, pImage, pCode, pBrandName, pPrice, pSize, pcQty, pcInsertDate " +
-	        				"FROM purchase " +
-	        				"JOIN product ON purchase.pCode = product.pCode";
+			  String query = "SELECT p.pcNo, pr.pImage, pr.pBrandName, pr.pPrice, po.pSize, p.pcQty, p.pcInsertDate " +
+	                     "FROM purchase p " +
+	                     "JOIN product pr ON p.pCode = pr.pCode " +
+	                     "JOIN productOption po ON pr.pCode = po.pCode " +
+	                     "WHERE p.uid = ?";
 			  preparedStatement = connection.prepareStatement(query);
 	             resultSet =  preparedStatement.executeQuery();
 	             
@@ -99,14 +101,13 @@ public class PurchaseDao {
 	            while (resultSet.next()) {
 	            	int PcNo = resultSet.getInt("PcNo");
 	    			String pImage = resultSet.getString("pImage");
-	    			String pCode = resultSet.getString("pCode");
+	    			int pCode = resultSet.getInt("pCode");
 	    			String pBrandName = resultSet.getString("pBrandName");
-	    			String pPrice = resultSet.getString("pPrice");
+	    			int pPrice = resultSet.getInt("pPrice");
 	    			String pSize = resultSet.getString("pSize");
 	    			Timestamp pcInsertDate = resultSet.getTimestamp("pcInsertDate");
-	            	
-	    			PurchaseDto dto = new PurchaseDto(query, pImage, pCode, pBrandName, pPrice, pSize, pPrice, pSize);
-	    			dtos.add(dto);
+	            	PurchaseDto purchaseDto = new PurchaseDto(PcNo, pImage, pCode, pBrandName, pPrice, pSize, pPrice, pcInsertDate);
+	    			dtos.add(purchaseDto);
 	    		}
 	    		
 	    	} catch (Exception e) {
@@ -125,11 +126,30 @@ public class PurchaseDao {
 
 	    }
 	
-	
-	
-	
-	
-	
+		  public void payment(String pSize, int pcQty, String pBrandName) {
+			    Connection connection = null;
+			    PreparedStatement preparedStatement = null;
+			    
+			    try {
+			        connection = dataSource.getConnection();/* create connection */; // 데이터베이스 연결 설정
+			        String updateQuery = "UPDATE products SET pStock = pStock - ? WHERE pBrandName = ? AND pSize = ?";
+			        preparedStatement = connection.prepareStatement(updateQuery);
+			        preparedStatement.setInt(1, pcQty);
+			        preparedStatement.setString(2, pBrandName);
+			        preparedStatement.setString(3, pSize);
+			        preparedStatement.executeUpdate();
+			    } catch (Exception e) {
+			        e.printStackTrace();
+			    } finally {
+			        try {
+			            if (preparedStatement != null) preparedStatement.close();
+			            if (connection != null) connection.close();
+			        } catch (Exception e) {
+			            e.printStackTrace();
+			        }
+			    }
+			
+		  }
 	
 	
 	
