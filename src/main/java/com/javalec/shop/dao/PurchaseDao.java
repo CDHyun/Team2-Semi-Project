@@ -89,11 +89,9 @@ public class PurchaseDao {
 
 		  try {
 			  connection = dataSource.getConnection();
-			  String query = "SELECT p.pcNo, pr.pImage, pr.pBrandName, pr.pPrice, po.pSize, p.pcQty, p.pcInsertDate " +
-	                     "FROM purchase p " +
-	                     "JOIN product pr ON p.pCode = pr.pCode " +
-	                     "JOIN productOption po ON pr.pCode = po.pCode " +
-	                     "WHERE p.uid = ?";
+			  String query = "SELECT pcNo, pImage, p.pCode, pBrandName, pPrice, po.pSize, pcQty, pcInsertDate " +
+	                    "FROM purchase pc, product p, productoption po " +
+	                    "WHERE pc.pCode = p.pCode";
 			  preparedStatement = connection.prepareStatement(query);
 	             resultSet =  preparedStatement.executeQuery();
 	             
@@ -105,6 +103,7 @@ public class PurchaseDao {
 	    			String pBrandName = resultSet.getString("pBrandName");
 	    			int pPrice = resultSet.getInt("pPrice");
 	    			String pSize = resultSet.getString("pSize");
+	    			int pcQty = resultSet.getInt("pcQty");
 	    			Timestamp pcInsertDate = resultSet.getTimestamp("pcInsertDate");
 	            	PurchaseDto purchaseDto = new PurchaseDto(PcNo, pImage, pCode, pBrandName, pPrice, pSize, pPrice, pcInsertDate);
 	    			dtos.add(purchaseDto);
