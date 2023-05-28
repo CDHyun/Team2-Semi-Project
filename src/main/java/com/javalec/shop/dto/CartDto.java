@@ -8,10 +8,36 @@ public class CartDto {
 	int pPrice;
 	int pCode;
 	int cQty;
+	String pSize;
 	
 	public CartDto() {
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	public CartDto(int cNo, String pName, String pBrand, int pPrice, int pCode,String pSize) {
+		super();
+		this.cNo = cNo;
+		this.pName = pName;
+		this.pBrand = pBrand;
+		this.pPrice = pPrice;
+		this.pCode = pCode;
+	}
+
+
+
+
+
+
+
+
 
 	public CartDto(int cNo, String uid, int pCode, int cQty, String pName, String pBrand ,int pPrice) {
 		super();
@@ -79,5 +105,31 @@ public class CartDto {
 	public void setcQty(int cQty) {
 		this.cQty = cQty;
 	}
+
+
+
+
+
+
+
+
+
+	public String getpSize() {
+		return pSize;
+	}
+
+
+
+
+
+
+
+
+
+	public void setpSize(String pSize) {
+		this.pSize = pSize;
+	}
+	
+	
 }
 	

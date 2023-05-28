@@ -93,10 +93,10 @@
     <form class="body" id="purchaseForm" action="" method="post">
     
         <table >
-            <caption><h4>상품 세부사항</h4></caption>
             <tr>
                 <td>
                     <dl>
+                    	<dd><h4>상품 세부사항</h4></dd>
                         <dd><img alt="image" src="${content_view.pImage }" width="200" height="200"></dd>
                         <dd>pCode</dd>
                         <dd><input type="text" name="pCode" value="${content_view.pCode}" readonly="readonly"></dd>

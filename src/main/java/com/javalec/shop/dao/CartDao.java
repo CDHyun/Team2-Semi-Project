@@ -55,7 +55,7 @@ public class CartDao {
 	
 		try {
 			connection = dataSource.getConnection();
-			String query = " select c.cNo, p.pCode, p.pName, p.pBrandName ,p.pPrice ,c.cQty from cart c, user u, product p where u.uid = c.uid and c.pCode = p.pCode and u.uid =?";
+			String query = " select c.cNo, p.pCode, p.pName, p.pBrandName ,p.pPrice ,c.cQty,c.pSize from cart c, user u, product p where u.uid = c.uid and c.pCode = p.pCode and u.uid =?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, userid);
 			resultSet = preparedStatement.executeQuery();
@@ -67,10 +67,12 @@ public class CartDao {
 			String pName = resultSet.getString(3);
 			String pBrandName =resultSet.getString(4);
 			int pPrice = resultSet.getInt(5);
+			String pSize =resultSet.getString(6);
 			
 			
 			
-			CartDto dto = new CartDto(cNo, uid, pCode, cQty, pName, pBrandName,pPrice);
+			//CartDto dto = new CartDto(cNo, uid, pCode, cQty, pName, pBrandName,pPrice);
+			CartDto dto = new CartDto(cNo, pName, pBrandName, pPrice, pCode,pSize);
 			dtos.add(dto);
 			}
 		}catch(Exception e) {
