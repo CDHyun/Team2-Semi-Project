@@ -1,11 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+<head>
 <meta charset="UTF-8">
 <title>Login Page</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+
 <!-- Javascript Functions -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -32,58 +38,55 @@
 
 	/* 2. 로그인 체크 */
 	function loginCheck() {
-	    const uid = $('#uid').val();
-	    const uPassword = $('#uPassword').val();
-	    const form = document.login_form
-	    
-	    if(uid.trim().length === 0){
-	    	showAlert("아이디를 입력해주세요.");
-	    	return;
-	    }
-	    
-	    if(uPassword.trim().length === 0){
-	    	showAlert("비밀번호를 입력해주세요.");
-	    	return;
-	    }
-	    
-	    
-	    console.log(uid);
-	    console.log(uPassword);
-	    $.ajax({
-	        type: 'POST',
-	        url: './JazzUserLoginCommand',
-	        data: {
-	        	uid: uid,
-	        	uPassword: uPassword
-	        	},
-	        success: function(result) {
-	        	console.log(result);
-	            if(result === "0"){
-	            	showAlert("아이디 혹은 비밀번호를 확인해주세요.")
-	            	return;
-	            }
-	            if(result === "-1"){
-	            	showAlert("탈퇴한 회원입니다.")
-	            	return;
-	            }
-	            if(result === "-2"){
-	            	showAlert("존재하지 않는 회원입니다.")
-	            	return;
-	            }
-	            if(result === "1") {
-	                showAlert("로그인 성공!");
-	        		setTimeout(function() {
-		                form.submit();
-	        		}, 1500);
-	            }
-	        },
-	        error: function() {
-	            showAlert("오류가 발생했습니다. 다시 시도해주세요.");
-	        }
-	    });
+		const uid = $('#uid').val();
+		const uPassword = $('#uPassword').val();
+		const form = document.login_form
+
+		if (uid.trim().length === 0) {
+			showAlert("아이디를 입력해주세요.");
+			return;
+		}
+
+		if (uPassword.trim().length === 0) {
+			showAlert("비밀번호를 입력해주세요.");
+			return;
+		}
+
+		console.log(uid);
+		console.log(uPassword);
+		$.ajax({
+			type : 'POST',
+			url : './JazzUserLoginCommand',
+			data : {
+				uid : uid,
+				uPassword : uPassword
+			},
+			success : function(result) {
+				console.log(result);
+				if (result === "0") {
+					showAlert("아이디 혹은 비밀번호를 확인해주세요.")
+					return;
+				}
+				if (result === "-1") {
+					showAlert("탈퇴한 회원입니다.")
+					return;
+				}
+				if (result === "-2") {
+					showAlert("존재하지 않는 회원입니다.")
+					return;
+				}
+				if (result === "1") {
+					showAlert("로그인 성공!");
+					setTimeout(function() {
+						form.submit();
+					}, 1500);
+				}
+			},
+			error : function() {
+				showAlert("오류가 발생했습니다. 다시 시도해주세요.");
+			}
+		});
 	}
-	
-	
 </script>
 
 <style>
@@ -105,13 +108,13 @@ body {
 }
 
 .container {
+	max-width: 500px;
+	margin: 50px auto;
+	margin-top: 200px;
+	padding: 30px;
 	background-color: #fff;
 	border-radius: 5px;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-	padding: 20px;
-	width: 400px;
-	margin: 0 auto;
-	margin-top: 100px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -124,14 +127,10 @@ h2 {
 	margin-bottom: 20px;
 }
 
-.form-group input {
-	width: 100%;
-	padding: 10px;
-	border-radius: 30px;
-	border: 1px solid #ccc;
-	outline: none;
-	transition: border-color 0.3s;
-	box-sizing: border-box;
+.form-group label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: 500;
 }
 
 .form-group input:focus {
@@ -139,18 +138,20 @@ h2 {
 }
 
 .button {
-	background-color: #000;
-	color: #fff;
-	border: none;
-	border-radius: 30px;
-	padding: 10px 20px;
-	cursor: pointer;
 	width: 100%;
-	transition: background-color 0.3s;
+	height: 40px;
+	padding: 6px 12px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #fff;
+	background-color: #242424;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
 .button:hover {
-	background-color: #333;
+	background-color: #324b99;
 }
 
 .background {
@@ -185,17 +186,30 @@ a:hover {
 }
 
 .signup-container {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
+.form-control {
+	width: 100%;
+	height: 40px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+}
 </style>
 
 </head>
+
 <body>
 	<!-- Header Start -->
 	<div class="header">
-		<jsp:include page="assets/common/include_common_header.jsp"/>
+		<jsp:include page="assets/common/include_common_header.jsp" />
 	</div>
 	<!-- Header End -->
 	<div class="background">
@@ -203,21 +217,27 @@ a:hover {
 			<h2>회원 로그인</h2>
 			<form action="login.do" name="login_form" method="post">
 				<div class="form-group">
-					<input type="text" id="uid" name="uid" placeholder="아이디">
+					<input type="text" id="uid" name="uid" class="form-control"
+						placeholder="아이디">
 				</div>
 				<div class="form-group">
-					<input type="password" id="uPassword" name="uPassword" placeholder="비밀번호">
+					<input type="password" id="uPassword" name="uPassword"
+						class="form-control" placeholder="비밀번호">
 				</div>
-				<input type="button" class="button" value="로그인" onclick="loginCheck()"><br/><br/>
+				<input type="button" class="button" value="로그인"
+					onclick="loginCheck()"><br />
+				<br />
 				<div class="signup-container text-center">
-				    아직 회원이 아니신가요? <a href="sign_up.jsp" class="signup-link">&nbsp;회원가입</a>
+					아직 회원이 아니신가요? <a href="sign_up.jsp" class="signup-link">&nbsp;회원가입</a>
 				</div>
 			</form>
 		</div>
 	</div>
-	
-	
-	
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
 </body>
+
 </html>
