@@ -44,8 +44,7 @@ public class PurchaseDto {
 
 
 
-	public PurchaseDto(int pcNo, String pImage, int pCode, String pBrandName, int pPrice, String pSize, int pcQty,
-			Timestamp pcInsertDate) {
+	public PurchaseDto(int pcNo, String pImage, int pCode, String pBrandName, int pPrice, String pSize, int pcQty, Timestamp pcInsertDate) {
 		super();
 		this.pcNo = pcNo;
 		this.pImage = pImage;

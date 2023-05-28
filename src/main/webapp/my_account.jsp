@@ -36,7 +36,7 @@
 		<div class="form-group">
 			주소 <input type="text" name="uAddress">
 		</div>
-		<input type="button" class="button" value="회원가입" onclick="registerCheck()">
+		<input type="button" class="button" value="수정" onclick="registerCheck()">
 	</form>
 	
 	
