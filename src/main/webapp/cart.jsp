@@ -8,6 +8,21 @@
 <meta charset="UTF-8">
 <title>장바구니</title>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function submitForm(link) {
+            var pcQty = "${dto.cQty }";
+            var pCode = "${dto.pCode}";
+            var pSize = "${dto.pSize}";
+
+            var url = link + "?pCode=" + encodeURIComponent(pCode) + "&pSize=" + encodeURIComponent(pSize) + "&pcQty=" + encodeURIComponent(pcQty);
+
+            $("#linkValue").val(url);
+            $("#purchaseForm").attr("action", url);
+            $("#purchaseForm").submit();
+        }
+       </script>
+
  <style>
         .header {
             position: fixed;
@@ -64,7 +79,7 @@
 	<!-- Header End -->
 	
 	<h1>장바구니</h1>
-	<form class="body" action="purchase_info.do">
+	<form class="body" id="purchaseForm" action="purchase_info.do" method="post">
 	<table border="1">
 	<tr>
 		<th>번호</th>
@@ -86,7 +101,7 @@
 		</tr>
 		</c:forEach>
 	<tr>
-	<td colspan ="6"><a href="javascript:history.back()">이전으로</a><input type="submit" value="구매"></td>
+	<td colspan ="6"><a href="javascript:history.back()">이전으로</a><input type="button" value="구매" onclick="submitForm('purchase_info.do')"></td>
 	</tr>
 	</table>
 	</form>
