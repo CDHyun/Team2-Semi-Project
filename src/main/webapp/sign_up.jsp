@@ -97,7 +97,7 @@
 		const regExpuEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 		const regExpuAddress = /^[가-힣|0-9|a-z|A-Z|-|\s]*$/;
 
-		if (regExpAdmin.test(uid.toLowerCase())) {
+		if (!regExpAdmin.test(uid.toLowerCase())) {
 			showAlert("Java Fundmental 규약에 어긋나는 아이디는 사용 불가능합니다.");
 			form.uid.select();
 			return;

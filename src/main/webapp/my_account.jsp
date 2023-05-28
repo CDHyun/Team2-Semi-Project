@@ -199,7 +199,7 @@
 			$("#userinfo").attr("action", url);
 			$.ajax({
 				type: 'POST',
-				url: './UserModifyCommand',
+				url: './JazzUserDeleteCommand',
 				data: {
 					uid: uid,
 				},

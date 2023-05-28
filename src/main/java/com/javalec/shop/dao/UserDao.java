@@ -268,5 +268,35 @@ public class UserDao {
 		}
 		return result;
 	}
+	
+	public int userSecede(String uid) {
+		int count = 0;
+		int result = 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = dataSource.getConnection();
+
+			String query = "update user set uDeleteDate = now(), uSecessionStatus = 1 where uid = ?";
+			ps = con.prepareStatement(query);
+			ps.setString(1, uid);
+			count = ps.executeUpdate();
+			if (count > 0) {
+				result = 1;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null)
+					con.close();
+				if (ps != null)
+					ps.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 
 } // End Class

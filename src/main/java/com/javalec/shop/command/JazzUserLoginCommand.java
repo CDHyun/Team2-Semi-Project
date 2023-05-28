@@ -50,6 +50,7 @@ public class JazzUserLoginCommand extends HttpServlet implements JazzCommand {
 		if(result == 1) {
 			session.setAttribute("SUID", uid);
 			response.getWriter().write(result + "");
+			System.out.println("회원 탈퇴 성공");
 		} else {
 			response.getWriter().write(result + "");
 		}
