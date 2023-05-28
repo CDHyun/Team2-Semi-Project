@@ -70,11 +70,11 @@ public class ProductDao {
 	
 	
 	
-	public ArrayList<ProductDto> searchAction() {
-//		if(queryName == null){ // 첫화면인 경우
-//			queryName = "address";
-//			queryContent = "";
-//		}
+	public ArrayList<ProductDto> searchAction(String queryName, String queryContent) {
+		if(queryName == null){ // 첫화면인 경우
+			queryName = "pName";
+			queryContent = "";
+		}
 
 		ArrayList<ProductDto> dtos = new ArrayList<ProductDto>();
 		Connection connection = null;
@@ -84,8 +84,8 @@ public class ProductDao {
 		try {
 			connection = dataSource.getConnection();
 			String WhereDefault = "select  pCode, pName, pBrandName, pPrice,pImage  from product";
-			//String WhereDefault2 = " where " + queryName + " like '%" +queryContent + "%'";
-			preparedStatement = connection.prepareStatement(WhereDefault);
+			String WhereDefault2 = " where " + queryName + " like '%" +queryContent + "%'";
+			preparedStatement = connection.prepareStatement(WhereDefault + WhereDefault2);
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
