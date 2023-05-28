@@ -92,7 +92,7 @@ public class PurchaseDao {
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				int PcNo = resultSet.getInt("PcNo");
+				int pcNo = resultSet.getInt("PcNo");
 				String pImage = resultSet.getString("pImage");
 				int pCode = resultSet.getInt("pCode");
 				String pBrandName = resultSet.getString("pBrandName");
@@ -100,7 +100,7 @@ public class PurchaseDao {
 				String pSize = resultSet.getString("pSize");
 				int pcQty = resultSet.getInt("pcQty");
 				Timestamp pcInsertDate = resultSet.getTimestamp("pcInsertDate");
-				PurchaseDto purchaseDto = new PurchaseDto(PcNo, pImage, pCode, pBrandName, pPrice, pSize, pcQty, pcInsertDate);
+				PurchaseDto purchaseDto = new PurchaseDto(pcNo, pImage, pCode, pBrandName, pPrice, pSize, pcQty, pcInsertDate);
 				dtos.add(purchaseDto);
 			}
 

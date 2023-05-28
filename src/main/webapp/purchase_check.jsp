@@ -27,7 +27,7 @@
 	<table border="1">
 		<tr>
 			<th>상품이미지</th>
-			<th>제품 번호</th>
+			<th>주문 번호</th>
 			<th>상품명</th>
 			<th>주문 가격</th>
 			<th>사이즈</th>
@@ -38,7 +38,7 @@
 		<c:forEach items="${PurchaseList}" var="purchaseDto">
 		<tr>
 			<td><img alt="image" src="${purchaseDto.pImage}" width="200" height="200"></td>
-			<td>${purchaseDto.pCode}</td>
+			<td>${purchaseDto.pcNo}</td>
 			<td>${purchaseDto.pBrandName}</td>
 			<td>${purchaseDto.pPrice}</td>
 			<td>${purchaseDto.pSize }</td>
