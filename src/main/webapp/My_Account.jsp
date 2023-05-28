@@ -12,8 +12,31 @@
 		<jsp:include page="assets/common/include_common_header.jsp"/>
 	</div>
 	
-	<form action="userinfoModify.do">
-		사용자 ID <input type="text" >
+	<h2>회원 가입</h2>
+	<form action="register.do" name="register" method="post">
+		<div class="form-group">
+			아이디 <input type="text" id="uid" name="uid">
+			<input type="button" value="중복체크" onclick="checkDuplicateId()">
+		</div>
+		<div class="form-group">
+			비밀번호 <input type="password" name="uPassword">
+		</div>
+		<div class="form-group">
+			비밀번호 확인 <input type="password" name="uRePass">
+		</div>
+		<div class="form-group">
+			이름 <input type="text" name="uName">
+		</div>
+		<div class="form-group">
+			전화번호 <input type="text" name="uPhone">
+		</div>
+		<div class="form-group">
+			이메일 <input type="text" name="uEmail">
+		</div>
+		<div class="form-group">
+			주소 <input type="text" name="uAddress">
+		</div>
+		<input type="button" class="button" value="회원가입" onclick="registerCheck()">
 	</form>
 	
 	

@@ -17,6 +17,7 @@ import com.javalec.shop.command.JazzPurchaseCheckCommand;
 import com.javalec.shop.command.JazzPurchaseCommand;
 import com.javalec.shop.command.JazzPurchaseInfoCommand;
 import com.javalec.shop.command.JazzUserLogOutCommand;
+import com.javalec.shop.command.JazzUserMyAccountCommand;
 
 
 /**
@@ -74,9 +75,9 @@ public class JazzHomeController extends HttpServlet {
 			viewPage = "index.do";
 			break;
 		case("/my_account.do"):
-			command = new JazzUserLogOutCommand();
+			command = new JazzUserMyAccountCommand();
 			command.execute(request, response);
-			viewPage = "index.do";
+			viewPage = "my_account.jsp";
 			break;
 		case("/index.do"):
 			command = new JazzIndexCommand();
@@ -91,7 +92,7 @@ public class JazzHomeController extends HttpServlet {
 		case("/purchase.do"):
 			command = new JazzPurchaseCommand();
 			command.execute(request, response);
-			viewPage = "purchase.jsp";
+			viewPage = "purchase_Check.do";
 			break;
 		case("/purchase_info.do"):
 			command = new JazzPurchaseInfoCommand();

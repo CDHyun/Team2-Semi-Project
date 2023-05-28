@@ -20,7 +20,7 @@ public class JazzUserMyAccountCommand implements JazzCommand {
 		beanList = userDao.userinfo(uid);
 		
 		request.setAttribute("UserInfo", beanList);
-
+		
 	}
 
 }
