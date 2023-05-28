@@ -72,7 +72,9 @@
 	            }
 	            if(result === "1") {
 	                showAlert("로그인 성공!");
-	                form.submit();
+	        		setTimeout(function() {
+		                form.submit();
+	        		}, 1500);
 	            }
 	        },
 	        error: function() {
@@ -91,7 +93,7 @@
 	left: 0;
 	right: 0;
 	z-index: 999;
-	background-color: #fff;
+	background-color: #000;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -104,17 +106,18 @@ body {
 
 .container {
 	background-color: #fff;
-	border-radius: 10px;
+	border-radius: 5px;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 	padding: 20px;
 	width: 400px;
 	margin: 0 auto;
-	margin-top: 300px;
+	margin-top: 100px;
 }
 
 h2 {
 	text-align: center;
 	margin-top: 0;
+	color: #000;
 }
 
 .form-group {
@@ -132,11 +135,11 @@ h2 {
 }
 
 .form-group input:focus {
-	border-color: dodgerblue;
+	border-color: #000;
 }
 
 .button {
-	background-color: dodgerblue;
+	background-color: #000;
 	color: #fff;
 	border: none;
 	border-radius: 30px;
@@ -147,7 +150,7 @@ h2 {
 }
 
 .button:hover {
-	background-color: #009edb;
+	background-color: #333;
 }
 
 .background {
@@ -169,8 +172,23 @@ h2 {
 }
 
 a {
+	color: #000;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #333;
+}
+
+.signup-link {
 	color: dodgerblue;
 }
+
+.signup-container {
+    display: flex;
+    justify-content: center;
+}
+
 </style>
 
 </head>
@@ -190,8 +208,10 @@ a {
 				<div class="form-group">
 					<input type="password" id="uPassword" name="uPassword" placeholder="비밀번호">
 				</div>
-				<input type="button" class="button" value="로그인" onclick="loginCheck()"><br />
-				아직 회원이 아니세요? <a href="sign_up.jsp">회원가입</a>
+				<input type="button" class="button" value="로그인" onclick="loginCheck()"><br/><br/>
+				<div class="signup-container text-center">
+				    아직 회원이 아니신가요? <a href="sign_up.jsp" class="signup-link">&nbsp;회원가입</a>
+				</div>
 			</form>
 		</div>
 	</div>

@@ -38,7 +38,7 @@
 		<c:forEach items="${PurchaseList}" var="purchaseDto">
 		<tr>
 			<td><img alt="image" src="${purchaseDto.pImage}" width="200" height="200"></td>
-			<td>${purchaseDto.pcNo}</td>
+			<td><a href="detail_view.do?seq=${purchaseDto.pcNo}">${purchaseDto.pcNo}</a></td>
 			<td>${purchaseDto.pBrandName}</td>
 			<td>${purchaseDto.pPrice}</td>
 			<td>${purchaseDto.pSize }</td>
@@ -53,7 +53,7 @@
 <br/>
 <hr/>
 <form action="index.do">
-<input type="submit" value="확인"><br/>
+<input type="submit" value="확인">&nbsp;&nbsp;&nbsp;<a href="purchase_delete.do?uid=${purchase_check.uid }">주문취소</a><br/>
 </form>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
