@@ -89,6 +89,11 @@ public class JazzHomeController extends HttpServlet {
 	         viewPage = "product_details.jsp";
 	         break;
 		case("/purchase.do"):
+			command = new JazzPurchaseCommand();
+			command.execute(request, response);
+			viewPage = "purchase.jsp";
+			break;
+		case("/purchase_info.do"):
 			command = new JazzPurchaseInfoCommand();
 			command.execute(request, response);
 			viewPage = "purchase.jsp";
