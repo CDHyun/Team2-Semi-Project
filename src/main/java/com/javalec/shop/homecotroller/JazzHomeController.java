@@ -110,9 +110,11 @@ public class JazzHomeController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "cart.jsp";
 			break;
-		
-			
-			
+		case("/purchase_delete.do"):
+			command = new JazzPurchaseDeleteCommand();
+			command.execute(request, response);
+			viewPage = "purchase_check.jsp";
+		break;
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
