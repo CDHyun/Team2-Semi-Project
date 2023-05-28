@@ -29,7 +29,22 @@
 		<jsp:include page="assets/common/include_common_header.jsp"/>
 	</div>
 	<!-- Header End -->
-	
+	<div class="background">
+		<div class="container">
+			<h2>회원 로그인</h2>
+			<form action="login.do" name="login_form">
+				<div class="form-group">
+					<input type="text" id="uid" name="uid" placeholder="아이디">
+				</div>
+				<div class="form-group">
+					<input type="password" id="uPassword" name="uPassword" placeholder="비밀번호">
+				</div>
+				<input type="button" class="button" value="로그인" onclick="loginCheck()"><br />
+				아직 회원이 아니세요? <a href="sign_up.jsp">회원가입</a>
+			</form>
+		</div>
+	</div>
+
 
 
 <div style="display: flex; justify-content: center;">
