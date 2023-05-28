@@ -29,7 +29,7 @@
 	<!-- Header End -->
 	
 	<h1>장바구니</h1>
-	<form action="">
+	<form action="purchase.do">
 	<table border="1">
 	<tr>
 		<th>번호</th>
@@ -42,16 +42,16 @@
 		<c:forEach items="${cart}" var="dto">
 		<tr>
 			<td>${dto.cNo}</td>
-			<td>${dto.pBrand}</td>
-			<td>${dto.pName}</td>
-			<td>${dto.pCode}</td>
-			<td>${dto.pPrice}></td>
+			<td>${content_view.pBrandName }</td>
+			<td>${content_view.pBrandName }</td>
+			<td>${content_view.pCode}</td>
+			<td>${content_view.pPrice }></td>
 			<td>${dto.cQty}</td>
 		
 		</tr>
 		</c:forEach>
 	<tr>
-	<td colspan ="6"><a href="">이전으로</a><input type="submit" value="구매"></td>
+	<td colspan ="6"><a href="javascript:history.back()">이전으로</a><input type="submit" value="구매"></td>
 	</tr>
 	</form>
 	</table>
