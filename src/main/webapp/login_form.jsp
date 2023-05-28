@@ -109,7 +109,7 @@ body {
 	padding: 20px;
 	width: 400px;
 	margin: 0 auto;
-	margin-top: 100px;
+	margin-top: 300px;
 }
 
 h2 {
@@ -183,7 +183,7 @@ a {
 	<div class="background">
 		<div class="container">
 			<h2>회원 로그인</h2>
-			<form action="login_form.jsp" name="login_form" method="post">
+			<form action="login.do" name="login_form" method="post">
 				<div class="form-group">
 					<input type="text" id="uid" name="uid" placeholder="아이디">
 				</div>
