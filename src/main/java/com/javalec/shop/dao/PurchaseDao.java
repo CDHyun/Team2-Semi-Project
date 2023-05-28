@@ -151,7 +151,7 @@ public class PurchaseDao {
 
 	}
 
-	public void purchase(String uid, int pCode, int pcQty, String pSize) { // BwriteCommand에서 부른걸 받는애.
+	public void purchase(String uid, int pCode, int pcQty, String pSize) { 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 

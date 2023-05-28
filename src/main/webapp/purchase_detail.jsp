@@ -17,10 +17,7 @@
 	
 	<c:set var="pur" value="${PurchaseList}" />
 	<!-- Header End -->
-	<div>
-		<h2>구매 내역</h2>
-		<hr/>
-	</div>
+	
  		<br/>
 		<br/>
 
