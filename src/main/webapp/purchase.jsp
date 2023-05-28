@@ -4,11 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>결제</title>
 </head>
 <body>
-
+	<!-- Header Start -->
+	<div class="header">
+		<jsp:include page="assets/common/include_common_header.jsp"/>
+	</div>
+	<!-- Header End -->
 
 
 
@@ -58,11 +63,11 @@
 		  </tr>
 		  <tr>
 		    <td>수량 :</td>
-		    <td> ${pcQty }</td>
+		    <td> ${param.pcQty }</td>
 		  </tr>
 		  <tr>
 		    <td>총금액 :</td>
-		    <td> ${pcQty*pPrice }</td>
+		    <td> ${param.pcQty *content_view.pPrice }</td>
 	 	 </tr>
 			</table>
 		<br/>
@@ -81,10 +86,11 @@
 <hr/>
 	</div> 
 	  
-			<form action="purchase_check.jsp" method="post" onsubmit="return purchaseCheck()">
+			<form action="purchase_check.do" method="post" onsubmit="return purchaseCheck()">
 			<input type="submit" value="결제">
 	 <br/>
 	 <br/>
 </form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

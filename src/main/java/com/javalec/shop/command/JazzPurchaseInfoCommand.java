@@ -11,7 +11,7 @@ import com.javalec.shop.dao.PurchaseDao;
 import com.javalec.shop.dto.ProductDto;
 import com.javalec.shop.dto.PurchaseDto;
 
-public class JazzPurchaseCommand implements JazzCommand {
+public class JazzPurchaseInfoCommand implements JazzCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
