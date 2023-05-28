@@ -86,7 +86,7 @@
 <hr/>
 	</div> 
 	  
-			<form action="purchase.do?pCode=${content_view.pCode}&pcQty=${param.pcQty}" method="post">
+			<form action="purchase.do?pCode=${content_view.pCode}&pcQty=${param.pcQty }&pSize=${param.pSize}" method="post">
 			<input type="submit" value="결제">
 	 <br/>
 	 <br/>

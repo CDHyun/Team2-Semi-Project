@@ -152,17 +152,18 @@ public class PurchaseDao {
 
 	}
 
-	public void purchase(String uid, int pCode, int pcQty) { // BwriteCommand에서 부른걸 받는애.
+	public void purchase(String uid, int pCode, int pcQty, String pSize) { // BwriteCommand에서 부른걸 받는애.
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
 		try {
 			connection = dataSource.getConnection();
-			String query = "insert into purchase(uid, pCode, pcInsertDate, pcQty) values(?, ?, now(), ?);";
+			String query = "insert into purchase(uid, pCode, pcInsertDate, pcQty, pSize) values(?, ?, now(), ?, ?);";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, uid);
 			preparedStatement.setInt(2, pCode);
 			preparedStatement.setInt(3, pcQty);
+			preparedStatement.setString(4, pSize);
 			preparedStatement.executeUpdate();
 
 		} catch (Exception e) {
