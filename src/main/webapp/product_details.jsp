@@ -69,17 +69,17 @@
             $("#purchaseForm").submit();
         }
 
-        function addToCart(link) {
+        function addToCart() {
             var pcQty = $('#pcQty').val();
             var pCode = "${content_view.pCode}";
             var pSize = "${dtos.pSize}";
 
-            var url = link + "?pCode=" + encodeURIComponent(pCode) + "&pSize=" + encodeURIComponent(pSize) + "&pcQty=" + encodeURIComponent(pcQty);
+            var url = "cart.do?pCode=" + encodeURIComponent(pCode) + "&pSize=" + encodeURIComponent(pSize) + "&pcQty=" + encodeURIComponent(pcQty);
 
-            $("#linkValue").val(url);
             $("#purchaseForm").attr("action", url);
             $("#purchaseForm").submit();
         }
+
     </script>
 </head>
 
@@ -90,13 +90,13 @@
     </div>
     <!-- Header End -->
 
-    <form class="body" id="purchaseForm" action="" method="get">
+    <form class="body" id="purchaseForm" action="" method="post">
     
         <table >
-            <caption><h4>상품 세부사항</h4></caption>
             <tr>
                 <td>
                     <dl>
+                    	<dd><h4>상품 세부사항</h4></dd>
                         <dd><img alt="image" src="${content_view.pImage }" width="200" height="200"></dd>
                         <dd>pCode</dd>
                         <dd><input type="text" name="pCode" value="${content_view.pCode}" readonly="readonly"></dd>

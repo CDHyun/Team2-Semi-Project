@@ -8,17 +8,52 @@
 <meta charset="UTF-8">
 <title>장바구니</title>
 
-<style>
-.header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 999;
-	background-color: #fff;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-</style>
+ <style>
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .body {
+            margin-top: 200px;
+        }
+
+        table {
+            border: 1px solid #000;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        caption {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        dl {
+            padding: 20px;
+        }
+
+        dt {
+            font-weight: bold;
+        }
+
+        dd {
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+        
+    </style>
 </head>
 <body>
 
@@ -29,32 +64,32 @@
 	<!-- Header End -->
 	
 	<h1>장바구니</h1>
-	<form action="purchase.do">
+	<form class="body" action="purchase_info.do">
 	<table border="1">
 	<tr>
 		<th>번호</th>
 		<th>브랜드</th>
 		<th>제품명</th>
-		<th>제품코드</th>
 		<th>가격</th>
 		<th>수량</th>
+		<th>사이즈</th>
 	</tr>
 		<c:forEach items="${cart}" var="dto">
 		<tr>
 			<td>${dto.cNo}</td>
-			<td>${content_view.pBrandName }</td>
-			<td>${content_view.pBrandName }</td>
-			<td>${content_view.pCode}</td>
-			<td>${content_view.pPrice }></td>
-			<td>${dto.cQty}</td>
+			<td>${dto.pBrandName }</td>
+			<td>${dto.pName }</td>
+			<td>${dto.pPrice }></td>
+			<td>${dto.cQty }</td>
+			<td>${dto.pSize } </td>
 		
 		</tr>
 		</c:forEach>
 	<tr>
 	<td colspan ="6"><a href="javascript:history.back()">이전으로</a><input type="submit" value="구매"></td>
 	</tr>
-	</form>
 	</table>
+	</form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
