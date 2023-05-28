@@ -53,7 +53,7 @@ public class PurchaseDao {
 			preparedStatement.setString(1, uid);//위에 물음표를 ()안에 데이터 채워 넣기
 			resultSet = preparedStatement.executeQuery();
 			
-			if(resultSet.next()) {
+			while(resultSet.next()) {
 				String uName = resultSet.getString(1);
 				String uPhone = resultSet.getString(2);
 				String uAddress = resultSet.getString(3);
@@ -131,7 +131,7 @@ public class PurchaseDao {
 			    
 			    try {
 			        connection = dataSource.getConnection();/* create connection */; // 데이터베이스 연결 설정
-			        String updateQuery = "UPDATE products SET pStock = pStock - ? WHERE pBrandName = ? AND pSize = ?";
+			        String updateQuery = "UPDATE productOption SET pStock = pStock - ? WHERE pCode = ? AND pSize = ?";
 			        preparedStatement = connection.prepareStatement(updateQuery);
 			        preparedStatement.setInt(1, pcQty);
 			        preparedStatement.setString(2, pBrandName);

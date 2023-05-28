@@ -18,7 +18,7 @@ public class JazzPurchaseCommand implements JazzCommand {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		String code = request.getParameter("pCode");
-		String uid = (String)session.getAttribute("UID");
+		String uid = (String)session.getAttribute("SUID");
 		PurchaseDao dao = new PurchaseDao();
 		
 		

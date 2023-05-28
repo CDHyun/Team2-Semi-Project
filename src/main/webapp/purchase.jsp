@@ -1,21 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>결제</title>
-
-<script type="text/javascript">
-    function purchaseCheck() {
-        var pStock = ${pStock};
-        if (pStock < 1) {
-            alert("상품 재고가 부족합니다.");
-            return false;
-        }
-        return true;
-    }
-</script>
 </head>
 <body>
 
@@ -33,11 +23,7 @@
 	int pPrice = Integer.parseInt(request.getParameter("pPrice"));
 	int pStock = Integer.parseInt(request.getParameter("pStock")); -->
 	
-	
-
-
-
-
+	<c:set var="users" value="${selectUser}" />
 
 	<div>
 		<h2>주문서 작성</h2>
@@ -45,12 +31,9 @@
 	</div>
 	<div>
 		<h3>배송지</h3>
-			이름 :${userInfo.uName }<br/>
-			전화번호 :${userInfo.uPhone }<br/>
-			주소 :${userInfo.uAddress }<br/>
-			<%
-			session.invalidate(); 
-			%> 
+			이름 :${users[0].uName }<br/>
+			전화번호 :${users[0].uPhone }<br/>
+			주소 :${users[0].uAddress }<br/>
 		 <br/>
 		 <br/>
 	<hr/>
