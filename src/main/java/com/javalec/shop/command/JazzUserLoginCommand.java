@@ -48,7 +48,7 @@ public class JazzUserLoginCommand extends HttpServlet implements JazzCommand {
 		HttpSession session = request.getSession();
 		int result = userDao.login(uid, uPassword);
 		if(result == 1) {
-			session.setAttribute("SESSIONID", uid);
+			session.setAttribute("SUID", uid);
 			response.getWriter().write(result + "");
 		} else {
 			response.getWriter().write(result + "");

@@ -1,50 +1,49 @@
 <head>
-<style>
-  .navbar .navbar-collapse .form-control {
-    max-width: 300px; /* 원하는 너비로 조정하세요 */
-    margin: 0 auto; /* 가운데 정렬을 위해 추가 */
-    flex-grow: 1; /* 공간을 균등하게 분배하기 위해 추가 */
-  }
-
-  .navbar .navbar-collapse .d-flex {
-    justify-content: center; /* 가운데 정렬을 위해 추가 */
-  }
-</style>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="login_form.jsp"><img alt="" src="https://play-lh.googleusercontent.com/10RJI8Gb86U7d14fwtWpINZEXqRJLv7pldQIojv8u-PD5qwl-EKrHq8yvEJuwX1f8g" width="100"> </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Brand
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+<nav>
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="login_form.jsp"><img alt=""
+                    src="https://play-lh.googleusercontent.com/10RJI8Gb86U7d14fwtWpINZEXqRJLv7pldQIojv8u-PD5qwl-EKrHq8yvEJuwX1f8g"
+                    width="100"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Brand</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link disabled" aria-disabled="true">Disabled</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <div>
+        <ul class="nav">
+            <c:if test="${empty sessionScope.SUID}">
+                <li class="nav-item"><a class="nav-link" href="login_form.jsp">Login</a></li>
+            </c:if>
+            <c:if test="${not empty sessionScope.SUID}">
+                <li class="nav-item"><a class="nav-link" href="#">My Page</a></li>
+                <li class="nav-item"><a class="nav-link" href="logOut.do">LogOut</a></li>
+            </c:if>
+        </ul>
+    </div>
 </nav>
