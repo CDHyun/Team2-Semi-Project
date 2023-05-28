@@ -4,11 +4,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+    function submitOrder() {
+        var pcQty = document.getElementById("quantity").value;
+        var pCode = "${content_view.pCode}";
+        var pSize = "${dtos.pSize}";
+
+        var url = "purchase.do?pCode=" + encodeURIComponent(pCode) + "&pSize=" + encodeURIComponent(pSize) + "&pcQty=" + encodeURIComponent(pcQty);
+        window.location.href = url;
+    }
+</script>
 <meta charset="UTF-8">
 <title>Details</title>
 </head>
+
 <body>
-	<form action="">
+	<form action="" method="get">
     <table border="" style="margin-left: auto; margin-right: auto;">
         <caption><h4>상품 세부사항</h4></caption>
         <tr>
@@ -36,7 +47,7 @@
                 </dl>
                 
                 <dl>
-                     <dd><a href="장바구니">장바구니 담기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="purchase.do">바로 주문</a></dd>
+                     <dd><a href="cart.do">장바구니 담기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="purchase.do" onclick="submitOrder()">바로 주문</a></dd>
                 </dl>
 </form>
 </body>
