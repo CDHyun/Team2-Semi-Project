@@ -69,17 +69,17 @@
             $("#purchaseForm").submit();
         }
 
-        function addToCart(link) {
+        function addToCart() {
             var pcQty = $('#pcQty').val();
             var pCode = "${content_view.pCode}";
             var pSize = "${dtos.pSize}";
 
-            var url = link + "?pCode=" + encodeURIComponent(pCode) + "&pSize=" + encodeURIComponent(pSize) + "&pcQty=" + encodeURIComponent(pcQty);
+            var url = "cart.do?pCode=" + encodeURIComponent(pCode) + "&pSize=" + encodeURIComponent(pSize) + "&pcQty=" + encodeURIComponent(pcQty);
 
-            $("#linkValue").val(url);
             $("#purchaseForm").attr("action", url);
             $("#purchaseForm").submit();
         }
+
     </script>
 </head>
 
@@ -90,7 +90,7 @@
     </div>
     <!-- Header End -->
 
-    <form class="body" id="purchaseForm" action="" method="get">
+    <form class="body" id="purchaseForm" action="" method="post">
     
         <table >
             <caption><h4>상품 세부사항</h4></caption>

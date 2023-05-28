@@ -28,9 +28,7 @@ public class CartDao {
 	
 	
 	
-	
-	
-	public CartDao(String code) {
+	public CartDao() {
 		try {
 			Context context = new InitialContext();
 			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/jazz");
@@ -38,7 +36,17 @@ public class CartDao {
 			e.printStackTrace();
 		}
 	}
-	public ArrayList<CartDto> cart(){
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public ArrayList<CartDto> cart(String userid){
 		ArrayList<CartDto> dtos = new ArrayList<CartDto>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -47,20 +55,18 @@ public class CartDao {
 	
 		try {
 			connection = dataSource.getConnection();
-			String query = " select c.cNo, p.pCode, p.pNmae, p.pBrandName ,p.pPrice ,c.cQty from cart c, user u, product p where u.uid = c.uid and c.pCode = p.pCode and u.uid =?";
+			String query = " select c.cNo, p.pCode, p.pName, p.pBrandName ,p.pPrice ,c.cQty from cart c, user u, product p where u.uid = c.uid and c.pCode = p.pCode and u.uid =?";
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(1, Integer.parseInt(code));
-			resultSet = preparedStatement.executeQuery(query);
+			preparedStatement.setString(1, userid);
+			resultSet = preparedStatement.executeQuery();
 		
 			
 			while(resultSet.next()) {
-			int cNo = resultSet.getInt("cNo");
-			String uid = resultSet.getString("uid");
-			int pCode = resultSet.getInt("pCode");
-			int cQty = resultSet.getInt("cQty");
-			String pName = resultSet.getString("pName");
-			String pBrandName =resultSet.getString("pBrandName");
-			int pPrice = resultSet.getInt("pPrice");
+			int cNo = resultSet.getInt(1);
+			int pCode = resultSet.getInt(2);
+			String pName = resultSet.getString(3);
+			String pBrandName =resultSet.getString(4);
+			int pPrice = resultSet.getInt(5);
 			
 			
 			
