@@ -14,6 +14,7 @@ import com.javalec.shop.command.JazzIndexCommand;
 import com.javalec.shop.command.JazzProductCommand;
 import com.javalec.shop.command.JazzPurchaseCheckCommand;
 import com.javalec.shop.command.JazzPurchaseCommand;
+import com.javalec.shop.command.JazzUserLogOutCommand;
 import com.javalec.shop.command.JazzUserRegisterCommand;
 
 
@@ -65,7 +66,12 @@ public class JazzHomeController extends HttpServlet {
 		case("/login.do"):
 			/* ajax로 검사하고 페이지 반환해서 다른 코드 필요 없음. */
 			viewPage = "index.do";
-		break;
+			break;
+		case("/logOut.do"):
+			command = new JazzUserLogOutCommand();
+			command.execute(request, response);
+			viewPage = "index.do";
+			break;
 		case("/index.do"):
 			command = new JazzIndexCommand();
 			command.execute(request, response);

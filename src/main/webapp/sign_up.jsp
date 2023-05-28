@@ -289,7 +289,7 @@ h2 {
 
 <div class="container">
 	<h2>회원 가입</h2>
-	<form action="register.do" name="register">
+	<form action="register.do" name="register" method="post">
 		<div class="form-group">
 			아이디 <input type="text" id="uid" name="uid">
 			<input type="button" value="중복체크" onclick="checkDuplicateId()">
