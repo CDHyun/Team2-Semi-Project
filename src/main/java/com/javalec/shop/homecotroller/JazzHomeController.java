@@ -15,6 +15,7 @@ import com.javalec.shop.command.JazzIndexCommand;
 import com.javalec.shop.command.JazzProductCommand;
 import com.javalec.shop.command.JazzPurchaseCheckCommand;
 import com.javalec.shop.command.JazzPurchaseCommand;
+import com.javalec.shop.command.JazzPurchaseDeleteCommand;
 import com.javalec.shop.command.JazzPurchaseInfoCommand;
 import com.javalec.shop.command.JazzUserLogOutCommand;
 import com.javalec.shop.command.JazzUserMyAccountCommand;
@@ -109,6 +110,9 @@ public class JazzHomeController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "cart.jsp";
 			break;
+		
+			
+			
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

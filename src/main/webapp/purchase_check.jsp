@@ -53,7 +53,7 @@
 <br/>
 <hr/>
 <form action="index.do">
-<input type="submit" value="확인"><br/>
+<input type="submit" value="확인">&nbsp;&nbsp;&nbsp;<a href="delete.do?seq=${content_view.seq }">주문취소</a><br/>
 </form>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

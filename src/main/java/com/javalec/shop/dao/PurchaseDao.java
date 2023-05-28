@@ -178,5 +178,33 @@ public class PurchaseDao {
 			}
 		}
 	}
+	
+	public void delete(String uid) { //BwriteCommand에서 부른걸 받는애.
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			String query = "delete from purchase where uid = ?";
+			preparedStatement = connection.prepareStatement(query); //sql문을 쓰려고 준비.
+			preparedStatement.setString(1, uid);
+			preparedStatement.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(preparedStatement !=null)preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch (Exception e) {
+			e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
+	
 
 } // END
