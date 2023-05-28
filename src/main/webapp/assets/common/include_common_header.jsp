@@ -33,6 +33,7 @@
 					</c:if>
 					<c:if test="${not empty sessionScope.SUID}">
 						<li><a class="nav-link" href="my_account.do">My Page</a></li>
+						<li><a class="nav-link" href="purchase_Check.do">PurchaseHistory</a></li>
 						<li><a class="nav-link" href="logOut.do">LogOut</a></li>
 					</c:if>
 				</ul>

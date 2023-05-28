@@ -12,8 +12,8 @@
 		<jsp:include page="assets/common/include_common_header.jsp"/>
 	</div>
 	
-	<h2>회원 가입</h2>
-	<form action="register.do" name="register" method="post">
+	<h2>My Page</h2>
+	<form action="modify" name="register" method="post">
 		<div class="form-group">
 			아이디 <input type="text" id="uid" name="uid">
 			<input type="button" value="중복체크" onclick="checkDuplicateId()">
