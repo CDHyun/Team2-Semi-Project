@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.javalec.shop.command.CartCommand;
 import com.javalec.shop.command.JazzCommand;
 import com.javalec.shop.command.JazzIndexCommand;
 import com.javalec.shop.command.JazzProductCommand;
@@ -91,6 +92,11 @@ public class JazzHomeController extends HttpServlet {
 			command = new JazzPurchaseCheckCommand();
 			command.execute(request, response);
 			viewPage = "purchase_check.jsp";
+			break;
+		case("/cart.do"):
+			command = new CartCommand();
+			command.execute(request, response);
+			viewPage = "cart.jsp";
 			break;
 		}
 		
