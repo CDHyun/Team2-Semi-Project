@@ -123,19 +123,38 @@ public class PurchaseDao {
 
 	}
 
-	public void payment(String pSize, int pcQty, String pBrandName) {
+	public int payment(String pSize, int pcQty, int pCode) {
+		int result = 0;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		PreparedStatement preparedStatement2 = null;
+		ResultSet checkRs = null;
+		int wkStock = 0;
 
 		try {
+			String checkQuery = "select pStock from productOption where pCode = ? and pSize = ?";
 			connection = dataSource.getConnection();
-			/* create connection */; // 데이터베이스 연결 설정
-			String updateQuery = "UPDATE productOption SET pStock = pStock - ? WHERE pCode = ? AND pSize = ?";
-			preparedStatement = connection.prepareStatement(updateQuery);
-			preparedStatement.setInt(1, pcQty);
-			preparedStatement.setString(2, pBrandName);
-			preparedStatement.setString(3, pSize);
-			preparedStatement.executeUpdate();
+			preparedStatement2 = connection.prepareStatement(checkQuery);
+			preparedStatement2.setInt(1, pCode);
+			preparedStatement2.setString(2, pSize);
+			checkRs = preparedStatement2.executeQuery();
+			if(checkRs.next()) {
+				wkStock = checkRs.getInt(1);
+			}
+			
+			if(pcQty > wkStock) {
+				result = 1; // 실패
+			} else {
+				/* create connection */; // 데이터베이스 연결 설정
+				String updateQuery = "UPDATE productOption SET pStock = pStock - ? WHERE pCode = ? AND pSize = ?";
+				preparedStatement = connection.prepareStatement(updateQuery);
+				preparedStatement.setInt(1, pcQty);
+				preparedStatement.setInt(2, pCode);
+				preparedStatement.setString(3, pSize);
+				preparedStatement.executeUpdate();
+				result = 0;
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -148,7 +167,7 @@ public class PurchaseDao {
 				e.printStackTrace();
 			}
 		}
-
+		return result;
 	}
 
 	public void purchase(String uid, int pCode, int pcQty, String pSize) { 
