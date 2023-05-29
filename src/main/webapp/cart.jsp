@@ -92,11 +92,11 @@
 		<c:forEach items="${cart}" var="dto">
 		<tr>
 			<td>${dto.cNo}</td>
-			<td>${dto.pBrandName }</td>
-			<td>${dto.pName }</td>
-			<td>${dto.pPrice }></td>
-			<td>${dto.cQty }</td>
-			<td>${dto.pSize } </td>
+			<td>${content_view.pBrandName }</td>
+			<td>${content_view.pName }</td>
+			<td>${content_view.pPrice }</td>
+			<td>${param.pcQty }</td>
+			<td>${param.pSize } </td>
 		
 		</tr>
 		</c:forEach>
