@@ -15,19 +15,12 @@ public class JazzPurchaseDeleteCommand implements JazzCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
+		String uid = (String)session.getAttribute("SUID");
 		int pcNo = Integer.parseInt(request.getParameter("pcNo"));
 		
-	
-
-        // 주문 정보 조회
-//        PurchaseDao dao = new PurchaseDao();
-//        PurchaseDto purchaseDto = dao.getPurchaseByPcNo(pcNo);
-//
-//        // 삭제 전에 전달할 데이터를 request 객체에 저장
-//        request.setAttribute("PurchaseInfo", purchaseDto);
-//
-//        // 주문 삭제
-//        dao.purchase_delete(pcNo);
+        PurchaseDao dao = new PurchaseDao();
+        dao.purchase_delete(pcNo, uid);
+        // 삭제 전에 전달할 데이터를 request 객체에 저장
     }
 
 	}

@@ -24,17 +24,12 @@
 			}, 3000);
 		}
 
-		function payment(link) {
+		function payment() {
 			
 		    var pCode = '<%=request.getParameter("pCode")%>';
 		    var pcQty = '<%=request.getParameter("pcQty")%>';
 		    var pSize = '<%=request.getParameter("pSize")%>';
 			
-			var url = link + "?pCode=" + encodeURIComponent(pCode) + "&pSize="
-            + encodeURIComponent(pSize) + "&pcQty="
-            + encodeURIComponent(pcQty);
-			console.log(url);
-            $("#purchase").attr("action", url);
 			$.ajax({
 				type : 'POST',
 				url : './JazzPaymentCommand',
@@ -158,8 +153,8 @@
 			<br />
 			<hr />
 		</div>
-		<form id="purchase" action="" name="purchase">
-			<input type="button" class="btn btn-primary" value="결제" onclick="payment('purchase.do')">
+		<form id="purchase" action="purchase_Check.do" name="purchase">
+			<input type="button" class="btn btn-primary" value="결제" onclick="payment()">
 		</form>
 	</div>
 

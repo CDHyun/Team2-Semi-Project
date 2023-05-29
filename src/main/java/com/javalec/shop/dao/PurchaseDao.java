@@ -123,11 +123,12 @@ public class PurchaseDao {
 
 	}
 
-	public int payment(String pSize, int pcQty, int pCode) {
+	public int payment(String pSize, int pcQty, int pCode, String uid) {
 		int result = 0;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		PreparedStatement preparedStatement2 = null;
+		PreparedStatement insertPs = null;
 		ResultSet checkRs = null;
 		int wkStock = 0;
 
@@ -154,6 +155,14 @@ public class PurchaseDao {
 				preparedStatement.setInt(2, pCode);
 				preparedStatement.setString(3, pSize);
 				preparedStatement.executeUpdate();
+				
+				String insertQuery = "insert into purchase (uid, pCode, pcInsertDate, pcQty, pSize) values(?, ?, now(), ?, ?);";
+				insertPs = connection.prepareStatement(insertQuery);
+				insertPs.setString(1, uid);
+				insertPs.setInt(2, pCode);
+				insertPs.setInt(3, pcQty);
+				insertPs.setString(4, pSize);
+				insertPs.executeUpdate();
 				result = 0;
 			}
 			
@@ -200,18 +209,17 @@ public class PurchaseDao {
 		}
 	}
 	
-	public void purchase_delete(int pcNo) { //BwriteCommand에서 부른걸 받는애.
+	public void purchase_delete(int pcNo, String uid) { //BwriteCommand에서 부른걸 받는애.
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = dataSource.getConnection();
-			String query = "delete from purchase where pcNo = ?";
+			String query = "delete from purchase where pcNo = ? and uid = ?";
 			preparedStatement = connection.prepareStatement(query); //sql문을 쓰려고 준비.
 			preparedStatement.setInt(1, pcNo);
+			preparedStatement.setString(2, uid);
 			preparedStatement.executeUpdate();
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {

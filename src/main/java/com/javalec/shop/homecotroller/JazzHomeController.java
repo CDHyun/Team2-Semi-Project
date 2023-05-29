@@ -121,7 +121,7 @@ public class JazzHomeController extends HttpServlet {
 		case("/purchase_delete.do"):
 			command = new JazzPurchaseDeleteCommand();
 			command.execute(request, response);
-			viewPage = "purchase_detail.jsp";
+			viewPage = "purchase_Check.do";
 		break;
 		}
 		
