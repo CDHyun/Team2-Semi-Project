@@ -18,6 +18,7 @@ public class JazzPurchaseCommand implements JazzCommand {
 		String strPcQty = request.getParameter("pcQty");
 		int pcQty = Integer.parseInt(strPcQty);
 		
+		System.out.println("uid = " + uid + "pcode = " + pCode + "pcQty = " + pcQty + "pSize =" + pSize);
 		PurchaseDao dao = new PurchaseDao();
 		dao.purchase(uid, pCode, pcQty, pSize);//write method 부르는 애 (순서주의)
 

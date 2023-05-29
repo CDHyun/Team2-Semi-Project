@@ -39,7 +39,7 @@
 		<c:forEach items="${PurchaseList}" var="purchaseDto">
 		<tr>
 			<td><img alt="image" src="${purchaseDto.pImage}" width="200" height="200"></td>
-			<td><a href="purchase_detail.jsp?pcNo=${purchaseDto.pcNo}">${purchaseDto.pcNo}</a></td>
+			<td><a href="purchase_detail.do?pcNo=${purchaseDto.pcNo}">${purchaseDto.pcNo}</a></td>
 			<td>${purchaseDto.pBrandName}</td>
 			<td>${purchaseDto.pPrice}</td>
 			<td>${purchaseDto.pSize }</td>

@@ -57,6 +57,8 @@ public class PurchaseDto {
 	}
 
 
+	
+	
 	public PurchaseDto(int pStock) {
 		super();
 		this.pStock = pStock;

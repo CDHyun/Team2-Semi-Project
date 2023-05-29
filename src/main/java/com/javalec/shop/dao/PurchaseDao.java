@@ -157,7 +157,7 @@ public class PurchaseDao {
 
 		try {
 			connection = dataSource.getConnection();
-			String query = "insert into purchase(uid, pCode, pcInsertDate, pcQty, pSize) values(?, ?, now(), ?, ?);";
+			String query = "insert into purchase (uid, pCode, pcInsertDate, pcQty, pSize) values(?, ?, now(), ?, ?);";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, uid);
 			preparedStatement.setInt(2, pCode);
@@ -202,6 +202,8 @@ public class PurchaseDao {
 			}
 		}
 	}
+	
+	
 	
 	
 	

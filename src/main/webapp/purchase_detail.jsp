@@ -33,6 +33,7 @@
 		
 		</tr>
 		<c:forEach items="${PurchaseList}" var="purchaseDto">
+		
 		<tr>
 			<td><img alt="image" src="${purchaseDto.pImage}" width="200" height="200"></td>
 			<td>${purchaseDto.pcNo}</td>
@@ -50,7 +51,7 @@
 <br/>
 <hr/>
 
-<form action="purchase_delete.do?pCode=${content_view.pCode}" method="post">
+<form action="purchase_delete.do?pcNo=${purchaseDto.pcNo}" method="post">
 			<input type="submit" value="주문취소">
 	 <br/>
 	 <br/>
