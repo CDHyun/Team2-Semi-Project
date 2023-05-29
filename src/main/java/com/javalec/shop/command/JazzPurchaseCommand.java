@@ -12,11 +12,9 @@ public class JazzPurchaseCommand implements JazzCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String uid = (String)session.getAttribute("SUID");
-		String strPCode = request.getParameter("pCode");
+		int pCode = Integer.parseInt(request.getParameter("pCode"));
+		int pcQty = Integer.parseInt(request.getParameter("pcQty"));
 		String pSize = request.getParameter("pSize");
-		int pCode = Integer.parseInt(strPCode);
-		String strPcQty = request.getParameter("pcQty");
-		int pcQty = Integer.parseInt(strPcQty);
 		
 		System.out.println("uid = " + uid + "pcode = " + pCode + "pcQty = " + pcQty + "pSize =" + pSize);
 		PurchaseDao dao = new PurchaseDao();

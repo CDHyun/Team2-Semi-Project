@@ -40,8 +40,10 @@ public class JazzPaymentCommand extends HttpServlet implements JazzCommand {
 		int pCode = Integer.parseInt(request.getParameter("pCode"));
 		int pcQty = Integer.parseInt(request.getParameter("pcQty"));
 		String pSize = request.getParameter("pSize");
+		System.out.println("pCode :"+pCode + " pcQty:"+pcQty+ " pSize:" + pSize);
 		PurchaseDao purchaseDao = new PurchaseDao();
 		int result = purchaseDao.payment(pSize, pcQty, pCode);
+		System.out.println("결과값 : " + result);
 		response.getWriter().write(result + "");
 
 	}

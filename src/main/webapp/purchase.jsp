@@ -10,6 +10,56 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		function showAlert(message) {
+			const alertBox = document.createElement('div');
+			alertBox.className = 'alert alert-dark';
+			alertBox.innerText = message;
+
+			const container = document.querySelector('.container');
+			container.appendChild(alertBox);
+
+			setTimeout(function() {
+				alertBox.remove();
+			}, 3000);
+		}
+
+		function payment(link) {
+			
+		    var pCode = '<%=request.getParameter("pCode")%>';
+		    var pcQty = '<%=request.getParameter("pcQty")%>';
+		    var pSize = '<%=request.getParameter("pSize")%>';
+			
+			var url = link + "?pCode=" + encodeURIComponent(pCode) + "&pSize="
+            + encodeURIComponent(pSize) + "&pcQty="
+            + encodeURIComponent(pcQty);
+			console.log(url);
+            $("#purchase").attr("action", url);
+			$.ajax({
+				type : 'POST',
+				url : './JazzPaymentCommand',
+				data : {
+					pCode : pCode,
+					pcQty : pcQty,
+					pSize : pSize
+				},
+				success : function(result) {
+					console.log(result);
+					if (result === "1") {
+						showAlert("재고가 부족합니다.");
+						return;
+					}
+					if (result === "0") {
+						showAlert("성공");
+						$("#purchase").submit();
+					}
+				},
+				error : function() {
+					showAlert("오류가 발생했습니다. 다시 시도해주세요.");
+				}
+			});
+		}
+	</script>
 <meta charset="UTF-8">
 <title>결제</title>
 <style type="text/css">
@@ -85,7 +135,7 @@
 						</p>
 						<p>
 							<strong>사이즈:</strong>
-							<%=request.getParameter("pSize")%></p>
+							${param.pSize}</p>
 						<p>
 							<strong>상품금액:</strong> ${content_view.pPrice}
 						</p>
@@ -108,8 +158,9 @@
 			<br />
 			<hr />
 		</div>
-
-		<button class="btn btn-primary" onclick="payment()">결제</button>
+		<form id="purchase" action="" name="purchase">
+			<input type="button" class="btn btn-primary" value="결제" onclick="payment('purchase.do')">
+		</form>
 	</div>
 
 	<script
@@ -117,60 +168,5 @@
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
 
-	<script type="text/javascript">
-		function showAlert(message) {
-			const alertBox = document.createElement('div');
-			alertBox.className = 'alert alert-dark';
-			alertBox.innerText = message;
-
-			const container = document.querySelector('.container');
-			container.appendChild(alertBox);
-
-			setTimeout(function() {
-				alertBox.remove();
-			}, 3000);
-		}
-
-		function payment() {
-			var pCode = $
-			{
-				param.pCode
-			}
-			;
-			var pcQty = $
-			{
-				param.pcQty
-			}
-			;
-			var pSize = $
-			{
-				param.pSize
-			}
-			;
-
-			$.ajax({
-				type : 'POST',
-				url : './JazzPaymentCommand',
-				data : {
-					pCode : pCode,
-					pcQty : pcQty,
-					pSize : pSize
-				},
-				success : function(result) {
-					console.log(result);
-					if (result === "1") {
-						showAlert("재고가 부족합니다.");
-						return;
-					}
-					if (result === "0") {
-						form.submit();
-					}
-				},
-				error : function() {
-					showAlert("오류가 발생했습니다. 다시 시도해주세요.");
-				}
-			});
-		}
-	</script>
 </body>
 </html>
