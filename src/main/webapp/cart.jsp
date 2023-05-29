@@ -10,17 +10,19 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        function submitForm(link) {
-            var pcQty = "${dto.cQty }";
-            var pCode = "${dto.pCode}";
-            var pSize = "${dto.pSize}";
+    function submitForm(link) {
+        var pcQty = ${param.pcQty };
+        var pCode = "${content_view.pCode}";
+        var pSize = ${param.pSize };
 
-            var url = link + "?pCode=" + encodeURIComponent(pCode) + "&pSize=" + encodeURIComponent(pSize) + "&pcQty=" + encodeURIComponent(pcQty);
+        var url = link + "?pCode=" + encodeURIComponent(pCode) + "&pSize="
+            + encodeURIComponent(pSize) + "&pcQty="
+            + encodeURIComponent(pcQty);
 
-            $("#linkValue").val(url);
-            $("#purchaseForm").attr("action", url);
-            $("#purchaseForm").submit();
-        }
+        $("#linkValue").val(url);
+        $("#myForm").attr("action", url);
+        $("#myForm").submit();
+    }
        </script>
 
  <style>
@@ -84,7 +86,7 @@
 	
 	
 	<h1>장바구니</h1>
-	<form class="body" id="purchaseForm" action="purchase_info.do" method="post">
+	<form class="body" id="myForm" action="purchase_info.do" method="post">
 	<table border="1">
 	<tr>
 		<th>번호</th>
@@ -106,7 +108,7 @@
 		</tr>
 		</c:forEach>
 	<tr>
-	<td colspan ="6"><a href="javascript:history.back()">이전으로</a><input type="button" value="구매" onclick="submitForm('purchase_info.do')"></td>
+	<td colspan ="6"><a href="javascript:history.back()">이전으로</a><input type="button" value="구매"  onclick="submitForm('purchase_info.do')"></td>
 	</tr>
 	</table>
 	</form>
