@@ -9,7 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.javalec.shop.dto.ProductDto;
+
 import com.javalec.shop.dto.adminDto;
 
 public class adminDao {
@@ -26,8 +26,8 @@ public class adminDao {
 		}
 	}
 	
-	public ArrayList<ProductDto> productList(){
-		ArrayList<ProductDto> dtos = new ArrayList<ProductDto>();
+	public ArrayList<adminDto> productList(){
+		ArrayList<adminDto> dtos = new ArrayList<adminDto>();
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -47,9 +47,9 @@ public class adminDao {
 				String pBrandName = resultSet.getString("pBrandName");
 				String pName = resultSet.getString("pName");
 				int pPrice = resultSet.getInt("pPrice");
-				int pSize = resultSet.getInt("pSize");
+				String pSize = resultSet.getString("pSize");
 				
-				ProductDto dto = new ProductDto(pImage, pCode, pBrandName, pName, pPrice);
+				adminDto dto = new adminDto(pImage, pCode, pBrandName, pName, pPrice, pSize);
 				dtos.add(dto);
 				
 			}
@@ -61,19 +61,23 @@ public class adminDao {
 	
 	
 	
-	public void write(String pImage, int pCode, String pBrandName, String pName, int pPrice, int pSize) {
+	public void write(String pImage, int pCode, String pBrandName, String pName, int pPrice, String pSize) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = dataSource.getConnection();
-			String query = "insert into product (pCode, pName, pBrandName, pPrice, pImage) values (?, ?, ?, ?, ?)";
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(1, pCode);
-			preparedStatement.setString(2, pName);
-			preparedStatement.setString(3, pBrandName);
-			preparedStatement.setInt(4, pPrice);
-			preparedStatement.setString(5, pImage);
+			String query = "INSERT INTO product (pImage, pCode, pBrandName, pName, pPrice, pSize) VALUES (?, ?, ?, ?, ?, ?)";
+			
+			String query1 = "INSERT INTO productOption(pSize) VALUES (?)";
+			preparedStatement = connection.prepareStatement(query + query1);
+			
+			preparedStatement.setString(1, pImage);
+			preparedStatement.setInt(2, pCode);
+			preparedStatement.setString(3, pName);
+			preparedStatement.setString(4, pBrandName);
+			preparedStatement.setInt(5, pPrice);
+			
 			
 			preparedStatement.executeUpdate();
 		}catch (Exception e) {
@@ -90,19 +94,21 @@ public class adminDao {
 	
 	
 	
-	public void modify(String pImage, int pCode ,String pBrandName, String pName, int pPrice, int pSize) {
+	public void modify(String pImage, int pCode ,String pBrandName, String pName, int pPrice, String pSize) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = dataSource.getConnection();
-			String query = "update product pName=?, pBrandName=?, pPrice=?, pImage=? where pCode";
-			preparedStatement = connection.prepareStatement(query);
+			String query = "update product SET pName=?, pBrandName=?, pPrice=?, pImage=? where pCode=?";
+			String query1 = "update productOption SET pSize=? where pCode=?";
+			preparedStatement = connection.prepareStatement(query + query1);
 			preparedStatement.setString(1, pName);
 			preparedStatement.setString(2, pBrandName);
 			preparedStatement.setInt(3, pPrice);
 			preparedStatement.setString(4, pImage);
-			preparedStatement.setInt(4, pCode);
+			preparedStatement.setInt(5, pCode);
+			preparedStatement.setString(6, pSize);
 			
 			preparedStatement.executeUpdate();
 		}catch (Exception e) {
@@ -124,9 +130,11 @@ public class adminDao {
 		
 		try {
 			connection = dataSource.getConnection();
-			String qyery = "delete from product where pCode = ?";
-			preparedStatement = connection.prepareStatement(qyery);
+			String query = "delete from product where pCode = ?";
+			String query1 = "delete from productOption where pCode = ?";
+			preparedStatement = connection.prepareStatement(query + query1);
 			preparedStatement.setInt(1, pCode);
+			preparedStatement.setInt(2, pCode);
 		}catch (Exception e) {
 			
 		}finally {

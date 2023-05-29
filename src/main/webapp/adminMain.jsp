@@ -24,8 +24,8 @@
 	<tr>
 		<td>
 		<a href="adminInsert.jsp">등록</a>
-			<a href="">수정</a>
-			<a href="">삭제</a>
+			<a href="adminWrite.jsp">수정</a>
+			<input type="submit" value="삭제" onclick="delete(this.value);">
 		</td>
 		</tr>
 	</table>		
