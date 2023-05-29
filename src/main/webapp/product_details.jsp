@@ -65,19 +65,20 @@
             var url = link + "?pCode=" + encodeURIComponent(pCode) + "&pSize=" + encodeURIComponent(pSize) + "&pcQty=" + encodeURIComponent(pcQty);
 
             $("#linkValue").val(url);
-            $("#purchaseForm").attr("action", url);
-            $("#purchaseForm").submit();
+            $("#myForm").attr("action", url);
+            $("#myForm").submit();
         }
 
-        function addToCart() {
+        function addToCart(link) {
             var pcQty = $('#pcQty').val();
             var pCode = "${content_view.pCode}";
             var pSize = "${dtos.pSize}";
 
-            var url = "cart.do?pCode=" + encodeURIComponent(pCode) + "&pSize=" + encodeURIComponent(pSize) + "&pcQty=" + encodeURIComponent(pcQty);
+            var url = link + "?pCode=" + encodeURIComponent(pCode) + "&pSize=" + encodeURIComponent(pSize) + "&pcQty=" + encodeURIComponent(pcQty);
 
-            $("#purchaseForm").attr("action", url);
-            $("#purchaseForm").submit();
+            $("#linkValue").val(url);
+            $("#myForm").attr("action", url);
+            $("#myForm").submit();
         }
 
     </script>
@@ -90,7 +91,7 @@
     </div>
     <!-- Header End -->
 
-    <form class="body" id="purchaseForm" action="" method="post">
+    <form class="body" id="myForm" action="" method="post">
     
         <table >
             <tr>
