@@ -86,7 +86,7 @@ public class PurchaseDao {
 			connection = dataSource.getConnection();
 			String query = "SELECT u.uid, pcNo, pImage, p.pCode, pBrandName, pPrice, po.pSize, pcQty, pcInsertDate "
 							+ "FROM purchase pc, product p, productoption po , user u " 
-							+ "WHERE pc.pCode = p.pCode and po.pSize = pc.pSize and po.pCode = p.pCode and u.uid = ?";
+							+ "WHERE pc.pCode = p.pCode and po.pSize = pc.pSize and po.pCode = p.pCode and u.uid = pc.uid and u.uid = ? ";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, uid);
 			resultSet = preparedStatement.executeQuery();
@@ -146,7 +146,9 @@ public class PurchaseDao {
 				result = 1; // 실패
 			} else {
 				/* create connection */; // 데이터베이스 연결 설정
-				String updateQuery = "UPDATE productOption SET pStock = pStock - ? WHERE pCode = ? AND pSize = ?";
+				String updateQuery = "UPDATE productOption po, purchase p SET po.pStock = po.pStock - ?  \n"
+						+ " WHERE p.pCode = po.pCode \n"
+						+ " and p.pCode = ?  AND po.pSize = ?";
 				preparedStatement = connection.prepareStatement(updateQuery);
 				preparedStatement.setInt(1, pcQty);
 				preparedStatement.setInt(2, pCode);
