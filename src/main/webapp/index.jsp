@@ -1,126 +1,103 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <meta charset="UTF-8">
-    <title>Index Page</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<meta charset="UTF-8">
+<title>Index Page</title>
+<style>
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 999;
+	background-color: #000;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-    <style>
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 999;
-            background-color: #000;
-            color: #fff;
-            padding: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+.body {
+	margin-top: 200px;
+}
 
-        .body {
-            margin-top: 200px;
-        }
+.product-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 이미지 및 텍스트 크기 조정 */
+	gap: 20px;
+	justify-items: center;
+}
 
-        table {
-            border: 1px solid #000;
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;
-            white-space: nowrap; /* 가로 스크롤을 위해 필요한 CSS 속성 */
-        }
+.product-item {
+	text-align: center;
+}
 
-        caption {
-            font-size: 20px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+.product-image {
+	width: 250px; /* 이미지 크기 조정 */
+	height: 250px; /* 이미지 크기 조정 */
+	object-fit: cover;
+	border-radius: 5px;
+}
 
-        th, td {
-            text-align: center;
-            padding: 10px;
-        }
-        
-        .scrollable-table {
-        max-height: 500px;
-        overflow-y: auto;
-        overflow-x: auto; /* 가로 스크롤을 위해 필요한 CSS 속성 */
-    	}
-    </style>
+.product-brand {
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.product-name {
+	margin-top: 5px;
+}
+
+.product-price {
+	margin-top: 5px;
+}
+
+.scrollable-table {
+	margin-top: 200px;
+	max-height: 1000px;
+	overflow-y: auto;
+	overflow-x: auto;
+}
+</style>
 </head>
 
 <body>
-    <!-- Header Start -->
-    <div class="header">
-        <jsp:include page="assets/common/include_common_header.jsp" />
-    </div>
-    <!-- Header End -->
-
-    <div class="body">
-        <div class="container">
-            <form action="index.do" method="get" class="mb-4">
-                <div class="row justify-content-center">
-                    <div class="col-md-4">
-                        <div class="input-group">
-                            <select name="query" class="form-select">
-                                <option value="pBrandName">브랜드명</option>
-                                <option value="pName" selected="selected">상품명</option>
-                            </select>
-                            <input type="text" name="content" size="30" class="form-control">
-                            <button type="submit" class="btn btn-primary">검색</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+	<!-- Header Start -->
+	<div class="header">
+		<jsp:include page="assets/common/include_common_header.jsp" />
+	</div>
+	<!-- Header End -->
 
 
-<div class="scrollable-table">
-            <table>
-                <caption>이미지 클릭 시 상세 페이지로 이동합니다.</caption>
-                <tr>
-                    <th>상품</th>
-                    <c:forEach items="${list}" var="dto">
-                        <td>
-                            <a href="product_details.do?pCode=${dto.pCode}">
-                                <img alt="image" src="${dto.pImage}" width="100" height="100">
-                            </a>
-                            <p>${dto.pBrandName}</p>
-                            <p>${dto.pName}</p>
-                            <p>${dto.pPrice}</p>
-                        </td>
-                    </c:forEach>
-                </tr>
-            </table>
-  </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"> </script>
-        
-        <script>
-    // 마우스 휠 이벤트 핸들러
-    function handleMouseWheel(event) {
-        var table = document.querySelector('.scrollable-table');
-        var scrollAmount = event.deltaY; // 휠 동작에 따른 스크롤 양
+			<div class="scrollable-table">
+				<div class="product-grid">
+					<c:forEach items="${list}" var="dto">
+						<div class="product-item">
+							<a href="product_details.do?pCode=${dto.pCode}"> <img
+								alt="image" src="${dto.pImage}" class="product-image">
+							</a>
+							<p class="product-brand">${dto.pBrandName}</p>
+							<p class="product-name">${dto.pName}</p>
+							<p class="product-price">${dto.pPrice}</p>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+	</div>
 
-        // 스크롤 이동
-        table.scrollLeft += scrollAmount;
-        
-        // 이벤트 전파 중단
-        event.preventDefault();
-    }
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous">
+		
+	</script>
 
-    // 이벤트 리스너 등록
-    var table = document.querySelector('.scrollable-table');
-    table.addEventListener('wheel', handleMouseWheel);
-</script>
-   
-    
-    
-    
-   
 </body>
 </html>

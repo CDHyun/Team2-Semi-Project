@@ -60,6 +60,10 @@
 
 			
 
+						
+
+			
+
 		}
 
 		if (uRePass.trim().length === 0) {
@@ -73,11 +77,19 @@
 
 			
 
+						
+
+			
+
 		}
 		if (uPassword.trim() !== uRePass.trim()) {
 			showAlert("비밀번호가 일치하지 않습니다.");
 			form.uRePass.select();
 			return
+
+			
+
+						
 
 			
 
@@ -94,6 +106,10 @@
 
 			
 
+						
+
+			
+
 		}
 
 		if (uPhone.trim().length === 0) {
@@ -104,6 +120,10 @@
 			showAlert("전화번호를 확인해주세요.\n ex)010-1234-5678")
 			form.uPhone.select();
 			return
+
+			
+
+						
 
 			
 
@@ -120,6 +140,10 @@
 
 			
 
+						
+
+			
+
 		}
 
 		if (uAddress.trim().length === 0) {
@@ -130,6 +154,10 @@
 			showAlert("주소는 영문/한글/숫자/- 만 입력 가능합니다.")
 			form.uAddress.select();
 			return
+
+			
+
+						
 
 			
 
@@ -198,12 +226,12 @@
 			var url = link;
 			$("#userinfo").attr("action", url);
 			$.ajax({
-				type: 'POST',
-				url: './JazzUserDeleteCommand',
-				data: {
-					uid: uid,
+				type : 'POST',
+				url : './JazzUserDeleteCommand',
+				data : {
+					uid : uid,
 				},
-				success: function (result) {
+				success : function(result) {
 					console.log(result);
 					if (result === "0") {
 						showAlert("탈퇴 중 오류가 발생하였습니다.");
@@ -211,70 +239,94 @@
 					}
 					if (result === "1") {
 						showAlert("회원 탈퇴가 완료되었습니다. 이용해주셔서 감사합니다.");
-						setTimeout(function () {
+						setTimeout(function() {
 							$("#userinfo").submit();
 						}, 2000);
 						return;
 					}
 				},
-				error: function () {
+				error : function() {
 					showAlert("오류가 발생했습니다. 다시 시도해주세요.");
 				}
 			});
 			$('#confirmModal').modal('hide'); // 수정된 부분: 모달 창 닫기
 		});
 	}
-
 </script>
 
 <style>
-body {
-	background-color: #f7f7f7;
-}
-
 .header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 999;
 	background-color: #000;
-	height: 60px;
-	margin-bottom: 20px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.header jsp\\:include {
-	color: #fff;
+body {
+	background-color: #f8f9fa;
 }
 
 .container {
 	max-width: 600px;
-	margin: 0 auto;
-	margin-top: 100px;
-	padding: 20px;
+	margin: 50px auto;
+	margin-top: 200px;
+	padding: 30px;
 	background-color: #fff;
-	border-radius: 4px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-	font-size: 24px;
+.form-group {
 	margin-bottom: 20px;
 }
 
-label {
-	font-weight: bold;
+.form-group label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: 500;
 }
 
 .form-control {
-	margin-bottom: 15px;
+	width: 100%;
+	height: 40px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: 4px;
+}
+
+.btn-primary {
+	background-color: #242424;
+	border-color: #3f5de7;
+}
+
+.btn-primary:hover {
+	background-color: #324b99;
+	border-color: #324b99;
 }
 
 .button {
-	background-color: #000;
+	width: 100%;
+	height: 40px;
+	padding: 6px 12px;
+	font-size: 14px;
+	font-weight: 500;
 	color: #fff;
+	background-color: #242424;
 	border: none;
-	padding: 10px 30px;
-	font-size: 16px;
 	border-radius: 4px;
 	cursor: pointer;
-	display: block;
-	margin: 0 auto;
+}
+
+.button:hover {
+	background-color: #324b99;
 }
 
 .alert-box {
@@ -301,7 +353,8 @@ label {
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="confirmModalLabel">확인</h5>
-					<button type="button" class="close" id="closeBtn" data-dismiss="modal" aria-label="Close">
+					<button type="button" class="close" id="closeBtn"
+						data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -309,7 +362,8 @@ label {
 					<p>탈퇴하시겠습니까?</p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" id="cancelBtn" data-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-secondary" id="cancelBtn"
+						data-dismiss="modal">취소</button>
 					<button type="button" class="btn btn-danger" id="confirmBtn">탈퇴하기</button>
 				</div>
 			</div>
@@ -317,7 +371,7 @@ label {
 	</div>
 
 	<div class="container">
-		<h2>My Page</h2>
+		<h2 style="text-align: center;">회원 정보</h2>
 		<form action="" id="userinfo" name="userinfo" method="post">
 			<c:forEach items="${UserInfo}" var="userDto">
 				<div class="form-group">
@@ -355,7 +409,8 @@ label {
 					</div>
 					<div class="col-auto">
 						<input type="button" id="deleteBtn" class="button" value="탈퇴하기"
-							style="background-color: red;" onclick="userSecede('userSecede.do')">
+							style="background-color: red;"
+							onclick="userSecede('userSecede.do')">
 					</div>
 				</div>
 			</c:forEach>
