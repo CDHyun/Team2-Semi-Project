@@ -85,8 +85,8 @@
 	
 	<h1>장바구니</h1>
 	<form class="body" id="purchaseForm" action="purchase_info.do" method="post">
-	<table border="1">
-	<tr>
+	<table border="1" width="600" height="100">
+	<tr align="center">
 		<th>번호</th>
 		<th>브랜드</th>
 		<th>제품명</th>
@@ -95,7 +95,7 @@
 		<th>사이즈</th>
 	</tr>
 		<c:forEach items="${cart}" var="dto">
-		<tr>
+		<tr align="center">
 			<td>${dto.cNo}</td>
 			<td>${content_view.pBrandName }</td>
 			<td>${content_view.pName }</td>
