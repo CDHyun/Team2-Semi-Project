@@ -19,7 +19,7 @@ public class JazzAdminModify implements JazzCommand {
 		int pSize = Integer.parseInt("pSize");
 		
 		adminDao dao = new adminDao();
-		dao.modify(pImage, pCode, pBrandName, pName, pPrice, pSize);
+		dao.modify(pImage, pCode, pBrandName, pName, pPrice, pName);
 	}
 
 }

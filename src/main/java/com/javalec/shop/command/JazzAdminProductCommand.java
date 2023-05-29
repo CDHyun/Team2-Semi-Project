@@ -16,7 +16,7 @@ public class JazzAdminProductCommand implements JazzCommand {
 		// TODO Auto-generated method stub
 		
 		adminDao dao = new adminDao();
-		ArrayList<ProductDto> dtos = dao.productList();
+		ArrayList<adminDto> dtos = dao.productList();
 		request.setAttribute("productList", dtos);
 
 	}

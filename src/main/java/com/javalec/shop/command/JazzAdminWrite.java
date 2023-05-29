@@ -20,7 +20,7 @@ public class JazzAdminWrite implements JazzCommand {
 		int pSize = Integer.parseInt("pSize");
 		
 		adminDao dao = new adminDao();
-		dao.write(pImage, pCode, pBrandName, pName, pPrice, pSize);
+		dao.write(pImage, pCode, pBrandName, pName, pPrice, pName);
 	}
 
 }

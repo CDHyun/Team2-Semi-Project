@@ -77,6 +77,7 @@ public class adminDao {
 			preparedStatement.setString(3, pName);
 			preparedStatement.setString(4, pBrandName);
 			preparedStatement.setInt(5, pPrice);
+			preparedStatement.setString(6, pSize);
 			
 			
 			preparedStatement.executeUpdate();
