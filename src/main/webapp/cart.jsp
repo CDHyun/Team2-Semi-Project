@@ -78,6 +78,11 @@
 	</div>
 	<!-- Header End -->
 	
+	
+	<c:set var="users" value="${selectUser}" />
+	
+	
+	
 	<h1>장바구니</h1>
 	<form class="body" id="purchaseForm" action="purchase_info.do" method="post">
 	<table border="1">
