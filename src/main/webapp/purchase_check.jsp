@@ -52,7 +52,7 @@
 <div class="container">
     <h2 style="text-align: center">구매 내역</h2>
     <table>
-        <caption>주문 번호를 클릭하면 주문 취소 페이지로 이동합니다.</caption>
+        <caption>주문 번호를 클릭하면 해당 상품이 주문 취소됩니다.</caption>
         <tr>
             <th>상품 이미지</th>
             <th>주문 번호</th>
